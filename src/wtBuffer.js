@@ -79,7 +79,7 @@ class wtBuffer extends wtResource {
 
     createStorageBuffer(sizeInBytes)
     {
-        this.usage_ = bufferUsage.Storage;
+        this.usage_ = bufferUsage.Storage | GPUBufferUsage.COPY_SRC;
         this.sizeInBytes_ = sizeInBytes;
         let bufferDescriptor = {
             size: this.sizeInBytes_,

@@ -7,7 +7,7 @@ import { wtRenderPipeline } from "./wtRenderPipeline.js"
 import { wtBindGroupLayout } from "./wtBindGroupLayout.js"
 import { GpuPrimTopology } from "./wtRenderPipeline.js"
 
-import { Vec4Colors } from "../wfun/wContants.js"
+import { Vec4Colors } from "./wContants.js"
 
 
 

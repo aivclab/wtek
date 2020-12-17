@@ -5,8 +5,8 @@ class wtContext {
         this.gpu_ = gpu;
         this.adapter_ = adapter;
         this.device_ = device;
-        this.width_ = 800;
-        this.height_ = 800;
+        this.width_ = 768;
+        this.height_ = 768;
     }
 
     isValid() {

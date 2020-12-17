@@ -2,8 +2,9 @@
   "name": "wtek",
   "version": "1.0.0",
   "description": "WebGPU engine",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
+    "index" : "create-index ./src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Peter Trier",
@@ -13,5 +14,8 @@
   },
   "exports": {
     "./": "./src/"
+  },
+  "devDependencies": {
+    "create-index": "^2.6.0"
   }
 }

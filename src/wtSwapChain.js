@@ -11,7 +11,7 @@ class wtSwapChain extends wtResource {
         const swapChainDescriptor = {
             device: super.getDevice(),
             format: swapChainFormat,
-            usage: GPUTextureUsage.OUTPUT_ATTACHMENT | GPUTextureUsage.COPY_SRC
+            usage: GPUTextureUsage.OUTPUT_ATTACHMENT | GPUTextureUsage.COPY_DST
         };
         this.swapChain_ = canvasContext.configureSwapChain(swapChainDescriptor);
     }
