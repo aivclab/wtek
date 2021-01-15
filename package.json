@@ -4,7 +4,7 @@
   "description": "WebGPU engine",
   "main": "src/index.js",
   "scripts": {
-    "index" : "create-index ./src",
+    "index": "create-index ./src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Peter Trier",

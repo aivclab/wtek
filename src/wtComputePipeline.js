@@ -10,8 +10,7 @@ class wtComputePipeline extends wtResource {
 
     create(computeShaderModule) {
         this.computeStage_ = { computeStage: { module: computeShaderModule, entryPoint: 'main' } };
-        this.pipeline_ = super.getDevice().createComputePipeline({ layout : this.layout_, computeStage: this.computeStage_.computeStage});
-        //this.pipeline_ = super.getDevice().createComputePipeline(this.computeStage_);
+        this.pipeline_ = super.getDevice().createComputePipeline(this.computeStage_);
     }
 
     getPipeline() { return this.pipeline_; }
