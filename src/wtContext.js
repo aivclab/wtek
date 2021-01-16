@@ -21,7 +21,7 @@ class wtContext {
     getHeight() { return this.height_; }
   
     setWidth(width) { this.width_ = width; }
-    setWidth(height) { this.height_ = height; }
+    setHeight(height) { this.height_ = height; }
 }
 
 export { wtContext };
