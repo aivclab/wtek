@@ -1,5 +1,5 @@
 {
-  "name": "wtek",
+  "name": "wTek",
   "version": "1.0.0",
   "description": "WebGPU engine",
   "main": "src/index.js",
