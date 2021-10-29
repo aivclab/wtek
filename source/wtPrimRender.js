@@ -24,8 +24,8 @@ class primUniformData {
   }
 
   toArray() {
-    let a0 = Float32Array.from(this.viewProjMatrix_);
-    let a1 = Float32Array.from(this.screenDimension_);
+    const a0 = Float32Array.from(this.viewProjMatrix_);
+    const a1 = Float32Array.from(this.screenDimension_);
     let index = 0;
     for (let i = 0; i < a0.length; i++) {
       this.floatArray_[index] = a0[i];
@@ -96,17 +96,17 @@ class wtPrimRender extends wtResource {
     this.uniformBuffer_ = new wtBuffer("primUniformBuffer", super.getContext());
     this.uniformBuffer_.createUniformBuffer(uniformBufferSize);
     // create bind group 0
-    let layOutEntry0 = {
+    const layOutEntry0 = {
       binding: 0,
       visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
       type: "uniform-buffer",
     };
-    let layOutEntry1 = {
+    const layOutEntry1 = {
       binding: 1,
       visibility: GPUShaderStage.FRAGMENT,
       type: "storage-buffer",
     };
-    let uniformBindGroupLayout_ = new wtBindGroupLayout(
+    const uniformBindGroupLayout_ = new wtBindGroupLayout(
       "PrimGroupLayout0",
       super.getContext()
     );
@@ -129,7 +129,7 @@ class wtPrimRender extends wtResource {
       .getDevice()
       .createBindGroup(this.uniformBindGroupDescriptor_);
     // pixel
-    let uniformBindGroupLayout1_ = new wtBindGroupLayout(
+    const uniformBindGroupLayout1_ = new wtBindGroupLayout(
       "PrimGroupLayout1",
       super.getContext()
     );
@@ -156,7 +156,7 @@ class wtPrimRender extends wtResource {
   }
 
   createPipelines(pointVertexModule, pointFragmentModule, sampleCount) {
-    let vertexDescriptor = new wtVertexDescriptor(VertexType.VT_VertexColor4);
+    const vertexDescriptor = new wtVertexDescriptor(VertexType.VT_VertexColor4);
     this.pointPipeline_ = new wtRenderPipeline(
       "pointPipeline",
       super.getContext()
@@ -195,7 +195,7 @@ class wtPrimRender extends wtResource {
   }
 
   createPixelPipeline(pixelVertexModule, pixelFragmentModule, sampleCount) {
-    let vertexDescriptor = new wtVertexDescriptor(VertexType.VT_VertexColor4);
+    const vertexDescriptor = new wtVertexDescriptor(VertexType.VT_VertexColor4);
     this.pixelPipeline_ = new wtRenderPipeline(
       "pixelPipeline",
       super.getContext()
@@ -283,34 +283,34 @@ class wtPrimRender extends wtResource {
 
   addGridXZ(dim, step) {
     let xpos = -dim * 0.5 * step;
-    let lineLength = dim * step;
+    const lineLength = dim * step;
     const offset_ = -0.005;
     const mainOffset_ = offset_ - offset_ * 0.5;
     for (let x = 0; x <= dim; x++) {
-      let p0 = vec3.fromValues(xpos, offset_, -lineLength * 0.5);
-      let p1 = vec3.fromValues(xpos, offset_, lineLength * 0.5);
-      let p2 = vec3.fromValues(-lineLength * 0.5, offset_, xpos);
-      let p3 = vec3.fromValues(lineLength * 0.5, offset_, xpos);
+      const p0 = vec3.fromValues(xpos, offset_, -lineLength * 0.5);
+      const p1 = vec3.fromValues(xpos, offset_, lineLength * 0.5);
+      const p2 = vec3.fromValues(-lineLength * 0.5, offset_, xpos);
+      const p3 = vec3.fromValues(lineLength * 0.5, offset_, xpos);
       this.addLine(p0, Vec4Colors.Grey, p1, Vec4Colors.Grey);
       this.addLine(p2, Vec4Colors.Grey, p3, Vec4Colors.Grey);
       xpos += step;
     }
-    let p0 = vec3.fromValues(-dim * 0.5 * step, mainOffset_, 0.0);
-    let p1 = vec3.fromValues(dim * 0.5 * step, mainOffset_, 0.0);
-    let p2 = vec3.fromValues(0.0, mainOffset_, -dim * 0.5 * step);
-    let p3 = vec3.fromValues(0.0, mainOffset_, dim * 0.5 * step);
+    const p0 = vec3.fromValues(-dim * 0.5 * step, mainOffset_, 0.0);
+    const p1 = vec3.fromValues(dim * 0.5 * step, mainOffset_, 0.0);
+    const p2 = vec3.fromValues(0.0, mainOffset_, -dim * 0.5 * step);
+    const p3 = vec3.fromValues(0.0, mainOffset_, dim * 0.5 * step);
     this.addLine(p0, Vec4Colors.White, p1, Vec4Colors.White);
     this.addLine(p2, Vec4Colors.White, p3, Vec4Colors.White);
   }
 
   addOrigin(pos, scale) {
-    let p0 = pos;
-    let pX = vec4.fromValues(scale, 0.0, 0.0, 0.0);
-    let pY = vec4.fromValues(0.0, scale, 0.0, 0.0);
-    let pZ = vec4.fromValues(0.0, 0.0, scale, 0.0);
-    let vX = vec4.fromValues(0.0, 0.0, 0.0, 0.0);
-    let vY = vec4.fromValues(0.0, 0.0, 0.0, 0.0);
-    let vZ = vec4.fromValues(0.0, 0.0, 0.0, 0.0);
+    const p0 = pos;
+    const pX = vec4.fromValues(scale, 0.0, 0.0, 0.0);
+    const pY = vec4.fromValues(0.0, scale, 0.0, 0.0);
+    const pZ = vec4.fromValues(0.0, 0.0, scale, 0.0);
+    const vX = vec4.fromValues(0.0, 0.0, 0.0, 0.0);
+    const vY = vec4.fromValues(0.0, 0.0, 0.0, 0.0);
+    const vZ = vec4.fromValues(0.0, 0.0, 0.0, 0.0);
     vec4.add(vX, p0, pX);
     vec4.add(vY, p0, pY);
     vec4.add(vZ, p0, pZ);
@@ -320,14 +320,14 @@ class wtPrimRender extends wtResource {
   }
 
   addImageQuad(xmin, xmax, ymin, ymax) {
-    let p0 = vec4.fromValues(this.toNdc(xmin), this.toNdc(ymin), 0.0, 1.0);
-    let p1 = vec4.fromValues(this.toNdc(xmax), this.toNdc(ymin), 0.0, 1.0);
-    let p2 = vec4.fromValues(this.toNdc(xmax), this.toNdc(ymax), 0.0, 1.0);
-    let p3 = vec4.fromValues(this.toNdc(xmin), this.toNdc(ymax), 0.0, 1.0);
-    let c0 = vec4.fromValues(0, 0, 0.0, 0.0, 1.0);
-    let c1 = vec4.fromValues(1, 0, 0.0, 0.0, 1.0);
-    let c2 = vec4.fromValues(1, 0, 1.0, 0.0, 1.0);
-    let c3 = vec4.fromValues(0, 0, 1.0, 0.0, 1.0);
+    const p0 = vec4.fromValues(this.toNdc(xmin), this.toNdc(ymin), 0.0, 1.0);
+    const p1 = vec4.fromValues(this.toNdc(xmax), this.toNdc(ymin), 0.0, 1.0);
+    const p2 = vec4.fromValues(this.toNdc(xmax), this.toNdc(ymax), 0.0, 1.0);
+    const p3 = vec4.fromValues(this.toNdc(xmin), this.toNdc(ymax), 0.0, 1.0);
+    const c0 = vec4.fromValues(0, 0, 0.0, 0.0, 1.0);
+    const c1 = vec4.fromValues(1, 0, 0.0, 0.0, 1.0);
+    const c2 = vec4.fromValues(1, 0, 1.0, 0.0, 1.0);
+    const c3 = vec4.fromValues(0, 0, 1.0, 0.0, 1.0);
     for (let i = 0; i < 4; i++) {
       this.screenNdcVerts_[i] = p0[i];
       this.screenNdcVerts_[i + 4] = c0[i];

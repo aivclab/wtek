@@ -31,7 +31,7 @@ class wtBuffer extends wtResource {
   createVertexBuffer(sizeInBytes) {
     this.usage_ = bufferUsage.Vertex | bufferUsage.CopyDst;
     this.sizeInBytes_ = sizeInBytes;
-    let bufferDescriptor = {
+    const bufferDescriptor = {
       size: this.sizeInBytes_,
       usage: this.usage_,
     };
@@ -40,7 +40,7 @@ class wtBuffer extends wtResource {
 
   createVertexBufferFromData(data) {
     this.usage_ = bufferUsage.Vertex | bufferUsage.CopyDst;
-    let bufferDescriptor = {
+    const bufferDescriptor = {
       size: data.byteLength,
       usage: this.usage_,
     };
@@ -52,7 +52,7 @@ class wtBuffer extends wtResource {
     this.usage_ = bufferUsage.Uniform | bufferUsage.CopyDst; // |
     // bufferUsage.MapWrite;
     this.sizeInBytes_ = sizeInBytes;
-    let bufferDescriptor = {
+    const bufferDescriptor = {
       size: this.sizeInBytes_,
       usage: this.usage_,
     };
@@ -61,7 +61,7 @@ class wtBuffer extends wtResource {
 
   createUniformBufferFromData(data) {
     this.usage_ = bufferUsage.Uniform | bufferUsage.CopyDst;
-    let bufferDescriptor = {
+    const bufferDescriptor = {
       size: data.byteLength,
       usage: this.usage_,
     };
@@ -72,7 +72,7 @@ class wtBuffer extends wtResource {
   createStorageBuffer(sizeInBytes) {
     this.usage_ = bufferUsage.Storage | GPUBufferUsage.COPY_SRC;
     this.sizeInBytes_ = sizeInBytes;
-    let bufferDescriptor = {
+    const bufferDescriptor = {
       size: this.sizeInBytes_,
       usage: this.usage_,
     };

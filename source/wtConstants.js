@@ -149,15 +149,15 @@ export const wtFilterMode = {
 export const wtBlendFactor = {
   Zero: "zero",
   One: "one",
-  SrcColor: "src-color",
-  OneMinusSrcColor: "one-minus-src-color",
-  SrcAlpha: "src-alpha",
-  OneMinusSrcAlpha: "one-minus-src-alpha",
+  SrcColor: "source-color",
+  OneMinusSrcColor: "one-minus-source-color",
+  SrcAlpha: "source-alpha",
+  OneMinusSrcAlpha: "one-minus-source-alpha",
   DstColor: "dst-color",
   OneMinusDstColor: "one-minus-dst-color",
   DstAlpha: "dst-alpha",
   OneMinusDstAlpha: "one-minus-dst-alpha",
-  SrcAlphaSaturated: "src-alpha-saturated",
+  SrcAlphaSaturated: "source-alpha-saturated",
   BlendColor: "blend-color",
   OneMinusBlendColor: "one-minus-blend-color",
 };
@@ -211,8 +211,8 @@ export const wtTextureViewDimension = {
   ThreeD: "3d",
 };
 export const wtInputStepMode = {
-  Vertex: 'vertex',
-  Instance: 'instance',
+  Vertex: "vertex",
+  Instance: "instance",
 };
 export const BlendColorFactor = 211;
 export const OneMinusBlendColorFactor = 212;

@@ -24,4 +24,4 @@ class wtSwapChain extends wtResource {
   }
 }
 
-export {wtSwapChain};
+export { wtSwapChain };

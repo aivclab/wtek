@@ -63,8 +63,9 @@ class wtRenderPipeline extends wtResource {
       fragmentStage: { module: this.fragmentModule_, entryPoint: "main" },
       vertexState: { vertexBuffers: [this.vertexBufferState_] },
       colorStates: [{ format: "bgra8unorm" }],
-      //colorStates:[ { format: "bgra8unorm", alphaBlend: { srcFactor:
-      // "src-alpha", dstFactor: "one-minus-src-alpha", operation: "add" } }],
+      // colorStates:[ { format: "bgra8unorm", alphaBlend: { srcFactor:
+      // "source-alpha", dstFactor: "one-minus-source-alpha", operation: "add"
+      // } }],
       rasterizationState: this.rasterState_,
       depthStencilState: this.depthStencilState_,
       primitiveTopology: this.primTopology_,
@@ -112,4 +113,4 @@ class wtRenderPipeline extends wtResource {
 }
 
 export default wtRenderPipeline;
-export {wtRenderPipeline};
+export { wtRenderPipeline };

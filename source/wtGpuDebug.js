@@ -18,4 +18,4 @@ class wtGpuDebug {
   }
 }
 
-export {wtGpuDebug};
+export { wtGpuDebug };

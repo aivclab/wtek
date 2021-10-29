@@ -60,16 +60,16 @@ class wtVertexDescriptor {
   }
 
   getVertexState() {
-    let attArray = [];
+    const attArray = [];
     for (let i = 0; i < this.vertexLayout_.length; i++) {
-      let att = {
+      const att = {
         shaderLocation: this.vertexLayout_[i].getShaderLocation(),
         offset: this.vertexLayout_[i].getOffset(),
         format: this.vertexLayout_[i].getFormat(),
       };
       attArray.push(att);
     }
-    let vertexState = {
+    const vertexState = {
       arrayStride: this.getVertexSizeInBytes(),
       attributes: attArray,
     };
@@ -77,5 +77,5 @@ class wtVertexDescriptor {
   }
 }
 
-export {wtVertexLayout};
-export {wtVertexDescriptor};
+export { wtVertexLayout };
+export { wtVertexDescriptor };

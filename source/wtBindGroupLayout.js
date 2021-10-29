@@ -28,7 +28,7 @@ class wtBindGroupLayout extends wtResource {
     if (!this.validateLayout) {
       return;
     }
-    let layoutEntries = { entries: this.layoutEntries_ };
+    const layoutEntries = { entries: this.layoutEntries_ };
     this.layout_ = super.getDevice().createBindGroupLayout(layoutEntries);
     return this.layout_;
   }
@@ -46,4 +46,4 @@ class wtBindGroupLayout extends wtResource {
   }
 }
 
-export {wtBindGroupLayout};
+export { wtBindGroupLayout };

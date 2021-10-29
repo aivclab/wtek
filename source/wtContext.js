@@ -44,4 +44,4 @@ class wtContext {
   }
 }
 
-export {wtContext};
+export { wtContext };

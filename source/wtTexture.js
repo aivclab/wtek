@@ -75,4 +75,4 @@ class wtTexture extends wtResource {
   }
 }
 
-export {wtTexture};
+export { wtTexture };

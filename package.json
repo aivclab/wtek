@@ -1,21 +1,37 @@
 {
-  "name": "wTek",
-  "version": "1.0.0",
-  "description": "WebGPU engine",
-  "main": "src/index.js",
-  "scripts": {
-    "index": "create-index ./src",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Peter Trier",
-  "license": "ISC",
   "dependencies": {
     "gl-matrix": "^3.3.0"
   },
-  "exports": {
-    "./": "./src/"
-  },
+  "description": "WebGPU engine",
   "devDependencies": {
-    "create-index": "^2.6.0"
-  }
+    "create-index": "^2.6.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-promise": "^5.1.1",
+    "eslint-plugin-react": "^7.26.1",
+    "husky": "^4.3.8",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1"
+  },
+  "exports": {
+    "./": "./source/"
+  },
+  "files": [
+    "source/*.js"
+  ],
+  "license": "ISC",
+  "main": "source/index.js",
+  "name": "wTek",
+  "scripts": {
+    "index": "create-index source",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint source/*.js",
+    "lint-fix": "eslint source/*.js --fix"
+  },
+  "version": "1.0.0"
 }
