@@ -30,21 +30,21 @@ class wtVertexDescriptor {
     this.vertexType_ = vertexType;
     switch (this.vertexType_) {
       case VertexType.VT_Vertex4:
-        this.vertexLayout_ = [new wtVertexLayout("float4", 0, 0)];
+        this.vertexLayout_ = [new wtVertexLayout("float32x4", 0, 0)];
         this.sizeInBytes_ = 4 * byteSizeOfFloat;
         break;
       case VertexType.VT_VertexColor4:
         this.vertexLayout_ = [
-          new wtVertexLayout("float4", 0, 0),
-          new wtVertexLayout("float4", 1, 4 * byteSizeOfFloat),
+          new wtVertexLayout("float32x4", 0, 0),
+          new wtVertexLayout("float32x4", 1, 4 * byteSizeOfFloat),
         ];
         this.sizeInBytes_ = 8 * byteSizeOfFloat;
         break;
       case VertexType.VT_VertexColorNormal4:
         this.vertexLayout_ = [
-          new wtVertexLayout("float4", 0, 0),
-          new wtVertexLayout("float4", 1, 4 * byteSizeOfFloat),
-          new wtVertexLayout("float4", 2, 8 * byteSizeOfFloat),
+          new wtVertexLayout("float32x4", 0, 0),
+          new wtVertexLayout("float32x4", 1, 4 * byteSizeOfFloat),
+          new wtVertexLayout("float32x4", 2, 8 * byteSizeOfFloat),
         ];
         this.sizeInBytes_ = 12 * byteSizeOfFloat;
         break;

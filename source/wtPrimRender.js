@@ -72,16 +72,16 @@ class wtPrimRender extends wtResource {
       "primFullScreenVertexBuffer",
       super.getContext()
     );
-    this.pointVertexBuffer_.createElementsVertexBuffer(
+    this.pointVertexBuffer_.createVertexBuffer(
       this.maxNumberOfPrims_ * Float32Array.BYTES_PER_ELEMENT * 8
     );
-    this.lineVertexBuffer_.createElementsVertexBuffer(
+    this.lineVertexBuffer_.createVertexBuffer(
       this.maxNumberOfPrims_ * Float32Array.BYTES_PER_ELEMENT * 8 * 2
     );
-    this.triangleVertexBuffer_.createElementsVertexBuffer(
+    this.triangleVertexBuffer_.createVertexBuffer(
       this.maxNumberOfPrims_ * Float32Array.BYTES_PER_ELEMENT * 8 * 3
     );
-    this.ndcVertexBuffer_.createElementsVertexBuffer(
+    this.ndcVertexBuffer_.createVertexBuffer(
       Float32Array.BYTES_PER_ELEMENT * 8 * 6
     );
     // uniform buffer create
@@ -99,12 +99,12 @@ class wtPrimRender extends wtResource {
     const layOutEntry0 = {
       binding: 0,
       visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
-      type: "uniform-buffer",
+      buffer: { type: "uniform", hasDynamicOffset: false, minBindingSize: 0} 
     };
     const layOutEntry1 = {
       binding: 1,
       visibility: GPUShaderStage.FRAGMENT,
-      type: "storage-buffer",
+      buffer: { type: "storage", hasDynamicOffset: false, minBindingSize: 0} 
     };
     const uniformBindGroupLayout_ = new wtBindGroupLayout(
       "PrimGroupLayout0",
@@ -144,6 +144,8 @@ class wtPrimRender extends wtResource {
 
   updateUniforms(viewProjection) {
     this.uniformBufferData_.update(viewProjection);
+    this.uniformBuffer_.uploadData(this.uniformBufferData_)
+    /*
     super
       .getDevice()
       .defaultQueue.writeBuffer(
@@ -153,6 +155,7 @@ class wtPrimRender extends wtResource {
         0,
         this.uniformBuffer_.getSizeInBytes()
       );
+      */
   }
 
   createPipelines(pointVertexModule, pointFragmentModule, sampleCount) {
@@ -387,6 +390,9 @@ class wtPrimRender extends wtResource {
   update() {
     if (this.pointsUpdated_) {
       const arrSize = this.numPoints_ * Float32Array.BYTES_PER_ELEMENT * 8;
+      this.pointVertexBuffer_.uploadData(this.points_)
+
+      /*      
       super
         .getDevice()
         .defaultQueue.writeBuffer(
@@ -396,10 +402,14 @@ class wtPrimRender extends wtResource {
           0,
           arrSize
         );
+    */
       this.pointsUpdated_ = false;
     }
     if (this.linesUpdated_) {
       const arrSize = this.numLines_ * Float32Array.BYTES_PER_ELEMENT * 8 * 2;
+      this.lineVertexBuffer_.uploadData(this.lines_)
+
+      /*
       super
         .getDevice()
         .defaultQueue.writeBuffer(
@@ -409,11 +419,15 @@ class wtPrimRender extends wtResource {
           0,
           arrSize
         );
+        */
       this.linesUpdated_ = false;
     }
     if (this.trianglesUpdated_) {
       const arrSize =
         this.numTriangles_ * Float32Array.BYTES_PER_ELEMENT * 8 * 3;
+      this.triangleVertexBuffer_.uploadData(this.triangles_)
+
+      /*
       super
         .getDevice()
         .defaultQueue.writeBuffer(
@@ -423,10 +437,14 @@ class wtPrimRender extends wtResource {
           0,
           arrSize
         );
+        */
       this.trianglesUpdated_ = false;
     }
     if (this.screenNdcQuadUpdated_) {
       const arrSize = Float32Array.BYTES_PER_ELEMENT * 8 * 6;
+      this.ndcVertexBuffer_.uploadData(this.screenNdcVerts_)
+
+      /*
       super
         .getDevice()
         .defaultQueue.writeBuffer(
@@ -436,6 +454,7 @@ class wtPrimRender extends wtResource {
           0,
           arrSize
         );
+        */
       this.screenNdcQuadUpdated_ = false;
     }
   }

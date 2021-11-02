@@ -12,7 +12,7 @@ class wtSwapChain extends wtResource {
       format: swapChainFormat,
       usage: GPUTextureUsage.OUTPUT_ATTACHMENT | GPUTextureUsage.COPY_DST,
     };
-    this.swapChain_ = canvasContext.configureSwapChain(swapChainDescriptor);
+    this.swapChain_ = canvasContext.configure(swapChainDescriptor);
   }
 
   getCreateView() {
