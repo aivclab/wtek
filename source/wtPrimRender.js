@@ -144,7 +144,7 @@ class wtPrimRender extends wtResource {
 
   updateUniforms(viewProjection) {
     this.uniformBufferData_.update(viewProjection);
-    this.uniformBuffer_.uploadData(this.uniformBufferData_)
+    this.uniformBuffer_.uploadData(this.uniformBufferData_.toArray())
     /*
     super
       .getDevice()

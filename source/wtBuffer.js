@@ -105,12 +105,7 @@ class wtBuffer extends wtResource {
   }
 
   uploadData(data) {
-    this.stagingBuffer_.mapAsync(GPUMapMode.WRITE, 0, this.sizeInBytes_).then( () => {
-      let mapped = new Uint8Array(this.stagingBuffer_.getMappedRange())
-      console.log(mapped)
-
-    })
-
+    this.context_.getDevice().queue.writeBuffer( this.buffer_, 0, data.buffer, data.byteOffset, data.byteLength )
   }
 }
 
