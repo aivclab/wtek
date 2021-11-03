@@ -3,7 +3,7 @@ class wtContext {
     this.gpu_ = gpu;
     this.adapter_ = adapter;
     this.device_ = device;
-    this.width_ = 600;
+    this.width_ = 800;
     this.height_ = 600;
   }
 
