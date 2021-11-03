@@ -1,23 +1,32 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
+    es2021: true
   },
-  extends: ["plugin:react/recommended", "standard"],
+  extends: ['plugin:react/recommended', 'standard'],
   parserOptions: {
     ecmaFeatures: {
-      jsx: true,
+      jsx: true
     },
     ecmaVersion: 11,
-    sourceType: "module",
+    sourceType: 'module'
   },
-  plugins: ["react"],
+  plugins: ['react'],
+  globals: {
+    window: true,
+    module: true,
+    GPUShaderStage: true,
+    GPUTextureUsage: true,
+    GPUBufferUsage: true,
+    GPUMapMode: true
+  },
   rules: {
-    "no-unused-vars": [
-      "warn",
-      { vars: "all", args: "after-used", ignoreRestSiblings: false },
+    'no-unused-vars': [
+      'warn',
+      { vars: 'all', args: 'after-used', ignoreRestSiblings: false }
     ],
-    "no-empty": ["warn", {}],
-    "no-undef": ["warn", {}],
-  },
-};
+    'no-empty': ['warn', {}],
+    'no-undef': ['warn', {}],
+    'no-useless-constructor': ['warn']
+  }
+}

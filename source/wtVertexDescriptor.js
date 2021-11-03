@@ -1,81 +1,81 @@
-const byteSizeOfFloat = 4;
+const byteSizeOfFloat = 4
 export const VertexType = {
-  VT_Vertex4: "vertex4",
-  VT_VertexColor4: "vertexColor4",
-  VT_VertexColorNormal4: "vertexColorNormal4",
-};
+  VT_Vertex4: 'vertex4',
+  VT_VertexColor4: 'vertexColor4',
+  VT_VertexColorNormal4: 'vertexColorNormal4'
+}
 
-class wtVertexLayout {
-  constructor(format, shaderLocation, offset) {
-    this.format_ = format;
-    this.shaderLocation_ = shaderLocation;
-    this.offset_ = offset;
+class WtVertexLayout {
+  constructor (format, shaderLocation, offset) {
+    this.format_ = format
+    this.shaderLocation_ = shaderLocation
+    this.offset_ = offset
   }
 
-  getFormat() {
-    return this.format_;
+  getFormat () {
+    return this.format_
   }
 
-  getShaderLocation() {
-    return this.shaderLocation_;
+  getShaderLocation () {
+    return this.shaderLocation_
   }
 
-  getOffset() {
-    return this.offset_;
+  getOffset () {
+    return this.offset_
   }
 }
 
-class wtVertexDescriptor {
-  constructor(vertexType) {
-    this.vertexType_ = vertexType;
+class WtVertexDescriptor {
+  constructor (vertexType) {
+    this.vertexType_ = vertexType
     switch (this.vertexType_) {
       case VertexType.VT_Vertex4:
-        this.vertexLayout_ = [new wtVertexLayout("float32x4", 0, 0)];
-        this.sizeInBytes_ = 4 * byteSizeOfFloat;
-        break;
+        this.vertexLayout_ = [new WtVertexLayout('float32x4', 0, 0)]
+        this.sizeInBytes_ = 4 * byteSizeOfFloat
+        break
       case VertexType.VT_VertexColor4:
         this.vertexLayout_ = [
-          new wtVertexLayout("float32x4", 0, 0),
-          new wtVertexLayout("float32x4", 1, 4 * byteSizeOfFloat),
-        ];
-        this.sizeInBytes_ = 8 * byteSizeOfFloat;
-        break;
+          new WtVertexLayout('float32x4', 0, 0),
+          new WtVertexLayout('float32x4', 1, 4 * byteSizeOfFloat)
+        ]
+        this.sizeInBytes_ = 8 * byteSizeOfFloat
+        break
       case VertexType.VT_VertexColorNormal4:
         this.vertexLayout_ = [
-          new wtVertexLayout("float32x4", 0, 0),
-          new wtVertexLayout("float32x4", 1, 4 * byteSizeOfFloat),
-          new wtVertexLayout("float32x4", 2, 8 * byteSizeOfFloat),
-        ];
-        this.sizeInBytes_ = 12 * byteSizeOfFloat;
-        break;
+          new WtVertexLayout('float32x4', 0, 0),
+          new WtVertexLayout('float32x4', 1, 4 * byteSizeOfFloat),
+          new WtVertexLayout('float32x4', 2, 8 * byteSizeOfFloat)
+        ]
+        this.sizeInBytes_ = 12 * byteSizeOfFloat
+        break
     }
   }
 
-  getVertexLayout() {
-    this.vertexLayout_;
+  getVertexLayout () {
+    return this.vertexLayout_
   }
 
-  getVertexSizeInBytes() {
-    return this.sizeInBytes_;
+  getVertexSizeInBytes () {
+    return this.sizeInBytes_
   }
 
-  getVertexState() {
-    const attArray = [];
+  getVertexState () {
+    const attArray = []
     for (let i = 0; i < this.vertexLayout_.length; i++) {
       const att = {
         shaderLocation: this.vertexLayout_[i].getShaderLocation(),
         offset: this.vertexLayout_[i].getOffset(),
-        format: this.vertexLayout_[i].getFormat(),
-      };
-      attArray.push(att);
+        format: this.vertexLayout_[i].getFormat()
+      }
+      attArray.push(att)
     }
     const vertexState = {
       arrayStride: this.getVertexSizeInBytes(),
-      attributes: attArray,
-    };
-    return vertexState;
+      attributes: attArray
+    }
+    return vertexState
   }
 }
 
-export { wtVertexLayout };
-export { wtVertexDescriptor };
+export { WtVertexLayout }
+export { WtVertexDescriptor }
