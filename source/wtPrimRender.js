@@ -197,7 +197,7 @@ class wtPrimRender extends wtResource {
     this.pixelPipeline_.setBindGroupLayouts(this.uniformsBindGroupLayout1_)
     this.pixelPipeline_.setVertexBufferState(vertexDescriptor.getVertexState())
     this.pixelPipeline_.setSampleCount(sampleCount)
-    this.pixelPipeline_.createNoDepthStencil()
+    this.pixelPipeline_.create()
   }
 
   addPoint (point, color) {

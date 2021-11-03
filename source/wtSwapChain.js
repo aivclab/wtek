@@ -10,9 +10,9 @@ class wtSwapChain extends wtResource {
     const swapChainDescriptor = {
       device: super.getDevice(),
       format: swapChainFormat,
-      usage: GPUTextureUsage.OUTPUT_ATTACHMENT | GPUTextureUsage.COPY_DST
     }
-    this.swapChain_ = canvasContext.configure(swapChainDescriptor)
+    canvasContext.configure(swapChainDescriptor)
+    this.swapChain_ = canvasContext
   }
 
   getCreateView () {

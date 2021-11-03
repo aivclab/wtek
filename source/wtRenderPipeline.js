@@ -82,7 +82,7 @@ class WtRenderPipeline extends wtResource {
       .getDevice()
       .createPipelineLayout({ bindGroupLayouts: [this.bindGroupLayouts_] })
     this.depthStencilState_ = {
-      depthWriteEnabled: true,
+      depthWriteEnabled: false,
       depthCompare: 'less',
       format: 'depth24plus-stencil8'
     }
