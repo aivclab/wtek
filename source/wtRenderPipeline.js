@@ -1,116 +1,115 @@
-import wtResource from "./wtResource.js";
+import { wtResource } from './wtResource'
 
 export const GpuPrimTopology = {
-  PointList: "point-list",
-  LineList: "line-list",
-  LineStrip: "line-strip",
-  TriangleList: "triangle-list",
-  TriangleStrip: "triangle-strip",
-};
+  PointList: 'point-list',
+  LineList: 'line-list',
+  LineStrip: 'line-strip',
+  TriangleList: 'triangle-list',
+  TriangleStrip: 'triangle-strip'
+}
 
-class wtRenderPipeline extends wtResource {
-  constructor(name, context) {
-    super(name, context);
-    this.layout_ = null;
-    this.layoutEntries_ = new Array();
-    this.vertexBufferState_ = null;
-    this.bindGroupLayouts_ = null;
-    this.primTopology_ = GpuPrimTopology.TriangleList;
-    this.sampleCount_ = 1;
-    this.pipeline_ = null;
+class WtRenderPipeline extends wtResource {
+  constructor (name, context) {
+    super(name, context)
+    this.layout_ = null
+    this.layoutEntries_ = []
+    this.vertexBufferState_ = null
+    this.bindGroupLayouts_ = null
+    this.primTopology_ = GpuPrimTopology.TriangleList
+    this.sampleCount_ = 1
+    this.pipeline_ = null
   }
 
-  setVertexModule(vertexModule) {
-    this.vertexModule_ = vertexModule;
+  setVertexModule (vertexModule) {
+    this.vertexModule_ = vertexModule
   }
 
-  setFragmentModule(fragmentModule) {
-    this.fragmentModule_ = fragmentModule;
+  setFragmentModule (fragmentModule) {
+    this.fragmentModule_ = fragmentModule
   }
 
-  setBindGroupLayouts(bindGroupLayouts) {
-    this.bindGroupLayouts_ = bindGroupLayouts;
+  setBindGroupLayouts (bindGroupLayouts) {
+    this.bindGroupLayouts_ = bindGroupLayouts
   }
 
-  setPrimTopology(primTopology) {
-    this.primTopology_ = primTopology;
+  setPrimTopology (primTopology) {
+    this.primTopology_ = primTopology
   }
 
-  setVertexBufferState(vertexBufferState) {
-    this.vertexBufferState_ = vertexBufferState;
+  setVertexBufferState (vertexBufferState) {
+    this.vertexBufferState_ = vertexBufferState
   }
 
-  setSampleCount(sampleCount) {
-    this.sampleCount_ = sampleCount;
+  setSampleCount (sampleCount) {
+    this.sampleCount_ = sampleCount
   }
 
-  create() {
+  create () {
     this.pipeLineLayout_ = super
       .getDevice()
-      .createPipelineLayout({ bindGroupLayouts: [this.bindGroupLayouts_] });
+      .createPipelineLayout({ bindGroupLayouts: [this.bindGroupLayouts_] })
     this.depthStencilState_ = {
       depthWriteEnabled: true,
-      depthCompare: "less",
-      format: "depth24plus-stencil8",
-    };
+      depthCompare: 'less',
+      format: 'depth24plus-stencil8'
+    }
     this.rasterState_ = {
-      frontFace: "ccw",
-      cullMode: "none",
-    };
+      frontFace: 'ccw',
+      cullMode: 'none'
+    }
     this.pipelineDescriptor_ = {
       layout: this.pipeLineLayout_,
-      vertexStage: { module: this.vertexModule_, entryPoint: "main" },
-      fragmentStage: { module: this.fragmentModule_, entryPoint: "main" },
+      vertexStage: { module: this.vertexModule_, entryPoint: 'main' },
+      fragmentStage: { module: this.fragmentModule_, entryPoint: 'main' },
       vertexState: { vertexBuffers: [this.vertexBufferState_] },
-      colorStates: [{ format: "bgra8unorm" }],
+      colorStates: [{ format: 'bgra8unorm' }],
       // colorStates:[ { format: "bgra8unorm", alphaBlend: { srcFactor:
       // "source-alpha", dstFactor: "one-minus-source-alpha", operation: "add"
       // } }],
       rasterizationState: this.rasterState_,
       depthStencilState: this.depthStencilState_,
       primitiveTopology: this.primTopology_,
-      sampleCount: this.sampleCount_,
-    };
+      sampleCount: this.sampleCount_
+    }
     this.pipeline_ = super
       .getDevice()
-      .createRenderPipeline(this.pipelineDescriptor_);
-    return this.pipeline_;
+      .createRenderPipeline(this.pipelineDescriptor_)
+    return this.pipeline_
   }
 
-  createNoDepthStencil() {
+  createNoDepthStencil () {
     this.pipeLineLayout_ = super
       .getDevice()
-      .createPipelineLayout({ bindGroupLayouts: [this.bindGroupLayouts_] });
+      .createPipelineLayout({ bindGroupLayouts: [this.bindGroupLayouts_] })
     this.depthStencilState_ = {
       depthWriteEnabled: true,
-      depthCompare: "less",
-      format: "depth24plus-stencil8",
-    };
+      depthCompare: 'less',
+      format: 'depth24plus-stencil8'
+    }
     this.rasterState_ = {
-      frontFace: "ccw",
-      cullMode: "none",
-    };
+      frontFace: 'ccw',
+      cullMode: 'none'
+    }
     this.pipelineDescriptor_ = {
       layout: this.pipeLineLayout_,
-      vertexStage: { module: this.vertexModule_, entryPoint: "main" },
-      fragmentStage: { module: this.fragmentModule_, entryPoint: "main" },
+      vertexStage: { module: this.vertexModule_, entryPoint: 'main' },
+      fragmentStage: { module: this.fragmentModule_, entryPoint: 'main' },
       vertexState: { vertexBuffers: [this.vertexBufferState_] },
-      colorStates: [{ format: "bgra8unorm" }],
+      colorStates: [{ format: 'bgra8unorm' }],
       rasterizationState: this.rasterState_,
       depthStencilState: this.depthStencilState_,
       primitiveTopology: this.primTopology_,
-      sampleCount: this.sampleCount_,
-    };
+      sampleCount: this.sampleCount_
+    }
     this.pipeline_ = super
       .getDevice()
-      .createRenderPipeline(this.pipelineDescriptor_);
-    return this.pipeline_;
+      .createRenderPipeline(this.pipelineDescriptor_)
+    return this.pipeline_
   }
 
-  getPipeline() {
-    return this.pipeline_;
+  getPipeline () {
+    return this.pipeline_
   }
 }
 
-export default wtRenderPipeline;
-export { wtRenderPipeline };
+export { WtRenderPipeline }
