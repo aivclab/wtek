@@ -1,6 +1,6 @@
 import { wtResource } from './wtResource'
 
-class wtComputePipeline extends wtResource {
+class WtComputePipeline extends wtResource {
   constructor (name, context) {
     super(name, context)
     this.layout_ = null
@@ -8,7 +8,6 @@ class wtComputePipeline extends wtResource {
   }
 
   create (computeShaderModule) {
-
     this.pipeLineLayout_ = super
       .getDevice()
       .createPipelineLayout({ bindGroupLayouts: [this.bindGroupLayouts_] })
@@ -31,4 +30,4 @@ class wtComputePipeline extends wtResource {
   }
 }
 
-export { wtComputePipeline }
+export { WtComputePipeline }

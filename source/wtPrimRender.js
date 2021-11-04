@@ -1,6 +1,6 @@
 import { mat4, vec3, vec4 } from 'gl-matrix'
-import { WtBuffer, Vec4Colors } from './wtBuffer'
 import { WtBindGroupLayout } from './wtBindGroupLayout'
+import { Vec4Colors, WtBuffer } from './wtBuffer'
 import { GpuPrimTopology, WtRenderPipeline } from './wtRenderPipeline'
 import { wtResource } from './wtResource'
 import { VertexType, WtVertexDescriptor } from './wtVertexDescriptor'
@@ -38,7 +38,7 @@ class PrimUniformData {
   }
 }
 
-class wtPrimRender extends wtResource {
+class WtPrimRender extends wtResource {
   constructor (name, context) {
     super(name, context)
     this.layout_ = null
@@ -387,7 +387,8 @@ class wtPrimRender extends wtResource {
       this.linesUpdated_ = false
     }
     if (this.trianglesUpdated_) {
-      // const arrSize = this.numTriangles_ * Float32Array.BYTES_PER_ELEMENT * 8 * 3
+      // const arrSize = this.numTriangles_ * Float32Array.BYTES_PER_ELEMENT *
+      // 8 * 3
       this.triangleVertexBuffer_.uploadData(this.triangles_)
       this.trianglesUpdated_ = false
     }
@@ -426,4 +427,4 @@ class wtPrimRender extends wtResource {
   }
 }
 
-export { wtPrimRender }
+export { WtPrimRender }

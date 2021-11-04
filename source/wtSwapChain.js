@@ -1,6 +1,6 @@
 import { wtResource } from './wtResource'
 
-class wtSwapChain extends wtResource {
+class WtSwapChain extends wtResource {
   constructor (name, context) {
     super(name, context)
     this.swapChain_ = null
@@ -9,7 +9,7 @@ class wtSwapChain extends wtResource {
   createSwapChain (swapChainFormat, canvasContext) {
     const swapChainDescriptor = {
       device: super.getDevice(),
-      format: swapChainFormat,
+      format: swapChainFormat
     }
     canvasContext.configure(swapChainDescriptor)
     this.swapChain_ = canvasContext
@@ -24,4 +24,4 @@ class wtSwapChain extends wtResource {
   }
 }
 
-export { wtSwapChain }
+export { WtSwapChain }

@@ -8,7 +8,7 @@ export const TextureUsage = {
   TU_RENDER_ATTACHMENT: GPUTextureUsage.RENDER_ATTACHMENT
 }
 
-class wtTexture extends wtResource {
+class WtTexture extends wtResource {
   constructor (name, context, usage) {
     super(name, context)
     this.width_ = 1
@@ -74,4 +74,4 @@ class wtTexture extends wtResource {
   }
 }
 
-export { wtTexture }
+export { WtTexture }

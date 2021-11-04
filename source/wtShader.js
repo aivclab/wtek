@@ -4,7 +4,7 @@ const vertexShaderType = 'vertex'
 const fragmentShaderType = 'fragment'
 const computeShaderType = 'compute'
 
-class wtShader extends wtResource {
+class WtShader extends wtResource {
   constructor (name, context) {
     super(name, context)
   }
@@ -16,7 +16,9 @@ class wtShader extends wtResource {
         code: glslang.compileGLSL(source, vertexShaderType),
         source: source
       }
-      shaderModule = super.getDevice().createShaderModule(shaderModuleDescriptor)
+      shaderModule = super
+        .getDevice()
+        .createShaderModule(shaderModuleDescriptor)
     } else {
       shaderModule = super.getDevice().createShaderModule({ code: source })
     }
@@ -31,7 +33,9 @@ class wtShader extends wtResource {
         code: glslang.compileGLSL(source, fragmentShaderType),
         source: source
       }
-      shaderModule = super.getDevice().createShaderModule(shaderModuleDescriptor)
+      shaderModule = super
+        .getDevice()
+        .createShaderModule(shaderModuleDescriptor)
     } else {
       shaderModule = super.getDevice().createShaderModule({ code: source })
     }
@@ -47,7 +51,9 @@ class wtShader extends wtResource {
         code: glslang.compileGLSL(source, computeShaderType),
         source: source
       }
-      shaderModule = super.getDevice().createShaderModule(shaderModuleDescriptor)
+      shaderModule = super
+        .getDevice()
+        .createShaderModule(shaderModuleDescriptor)
     } else {
       shaderModule = super.getDevice().createShaderModule({ code: source })
     }
@@ -56,4 +62,4 @@ class wtShader extends wtResource {
   }
 }
 
-export { wtShader }
+export { WtShader }

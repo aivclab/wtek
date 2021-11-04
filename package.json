@@ -19,7 +19,7 @@
     "prettier": "^2.2.1"
   },
   "directions": {
-    "wgTek": "source"
+    "wgtek": "source"
   },
   "exports": {
     ".": "./source/index.js",
