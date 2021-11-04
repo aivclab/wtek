@@ -30,7 +30,7 @@
   ],
   "license": "ISC",
   "main": "source/index.js",
-  "name": "wTek",
+  "name": "wtek",
   "scripts": {
     "index": "create-index source",
     "test": "echo \"Error: no test specified\" && exit 1",

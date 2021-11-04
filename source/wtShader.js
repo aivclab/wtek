@@ -10,40 +10,47 @@ class wtShader extends wtResource {
   }
 
   createVertexShaderModule (glslang, source) {
-    const shaderModuleDescriptor = {
-      code: glslang.compileGLSL(source, vertexShaderType),
-      source: source
+    let shaderModule
+    if (source.startsWith('#version')) {
+      const shaderModuleDescriptor = {
+        code: glslang.compileGLSL(source, vertexShaderType),
+        source: source
+      }
+      shaderModule = super.getDevice().createShaderModule(shaderModuleDescriptor)
+    } else {
+      shaderModule = super.getDevice().createShaderModule({ code: source })
     }
-    console.log('shaderModuleDescriptor', shaderModuleDescriptor)
-    const shaderModule = super
-      .getDevice()
-      .createShaderModule(shaderModuleDescriptor)
     console.log(`shaderModule_${vertexShaderType}}`, shaderModule)
     return shaderModule
   }
 
   createFragmentShaderModule (glslang, source) {
-    const shaderModuleDescriptor = {
-      code: glslang.compileGLSL(source, fragmentShaderType),
-      source: source
+    let shaderModule
+    if (source.startsWith('#version')) {
+      const shaderModuleDescriptor = {
+        code: glslang.compileGLSL(source, fragmentShaderType),
+        source: source
+      }
+      shaderModule = super.getDevice().createShaderModule(shaderModuleDescriptor)
+    } else {
+      shaderModule = super.getDevice().createShaderModule({ code: source })
     }
-    console.log('shaderModuleDescriptor', shaderModuleDescriptor)
-    const shaderModule = super
-      .getDevice()
-      .createShaderModule(shaderModuleDescriptor)
+
     console.log(`shaderModule_${fragmentShaderType}}`, shaderModule)
     return shaderModule
   }
 
   createComputeShaderModule (glslang, source) {
-    const shaderModuleDescriptor = {
-      code: glslang.compileGLSL(source, computeShaderType),
-      source: source
+    let shaderModule
+    if (source.startsWith('#version')) {
+      const shaderModuleDescriptor = {
+        code: glslang.compileGLSL(source, computeShaderType),
+        source: source
+      }
+      shaderModule = super.getDevice().createShaderModule(shaderModuleDescriptor)
+    } else {
+      shaderModule = super.getDevice().createShaderModule({ code: source })
     }
-    console.log('shaderModuleDescriptor', shaderModuleDescriptor)
-    const shaderModule = super
-      .getDevice()
-      .createShaderModule(shaderModuleDescriptor)
     console.log(`shaderModule_${computeShaderType}}`, shaderModule)
     return shaderModule
   }

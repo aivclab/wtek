@@ -44,6 +44,7 @@ class WtBuffer extends wtResource {
     this.bufferType_ = bufferType.VertexBuffer
     this.usage_ = bufferUsage.Unknown
     this.buffer_ = null
+    this.stagingBuffer_ = null
     this.sizeInBytes_ = 0
   }
 
@@ -55,16 +56,20 @@ class WtBuffer extends wtResource {
       usage: this.usage_
     }
     this.buffer_ = super.getDevice().createBuffer(bufferDescriptor)
+    this.stagingBuffer_ = super.getDevice().createBuffer({ size: this.sizeInBytes_, usage: bufferUsage.CopySrc | bufferUsage.MapWrite })
   }
 
   createVertexBufferFromData (data) {
-    this.usage_ = bufferUsage.Vertex | bufferUsage.CopyDst
+    this.usage_ = bufferUsage.Vertex
     const bufferDescriptor = {
       size: data.byteLength,
-      usage: this.usage_
+      usage: this.usage_,
+      mappedAtCreation: true
     }
     this.buffer_ = super.getDevice().createBuffer(bufferDescriptor)
-    super.getDevice().defaultQueue.writeBuffer(this.buffer_, 0, data.buffer)
+    const mapped = new Uint8Array(this.buffer_.getMappedRange())
+    mapped.set(new Uint8Array(data.buffer, data.byteOffset, data.byteLength))
+    this.buffer_.unmap()
   }
 
   createUniformBuffer (sizeInBytes) {
@@ -76,6 +81,7 @@ class WtBuffer extends wtResource {
       usage: this.usage_
     }
     this.buffer_ = super.getDevice().createBuffer(bufferDescriptor)
+    this.stagingBuffer_ = super.getDevice().createBuffer({ size: this.sizeInBytes_, usage: bufferUsage.CopySrc | bufferUsage.MapWrite })
   }
 
   createUniformBufferFromData (data) {
@@ -96,6 +102,7 @@ class WtBuffer extends wtResource {
       usage: this.usage_
     }
     this.buffer_ = super.getDevice().createBuffer(bufferDescriptor)
+    this.stagingBuffer_ = super.getDevice().createBuffer({ size: this.sizeInBytes_, usage: bufferUsage.CopySrc | bufferUsage.MapWrite })
   }
 
   getBuffer () {
@@ -108,14 +115,17 @@ class WtBuffer extends wtResource {
 
   async mapBuffer () {
     // Todo how does this work?
-    this.buffer_.mapAsync(GPUMapMode.WRITE, 0, this.sizeInBytes_)
+    await this.buffer_.mapAsync(GPUMapMode.WRITE, 0, this.sizeInBytes_)
+    return this.buffer_.getMappedRange()
   }
 
-  async unmapBuffer () {
-    this.buffer_.mapAsync(GPUMapMode.READ, 0, this.sizeInBytes_)
+  unmapBuffer () {
+    this.buffer_.unmap()
   }
 
-  uploadData (data) {}
+  uploadData (data) {
+    this.context_.getDevice().queue.writeBuffer(this.buffer_, 0, data.buffer, data.byteOffset, data.byteLength)
+  }
 }
 
 export { WtBuffer }

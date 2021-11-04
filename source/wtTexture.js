@@ -37,9 +37,8 @@ class wtTexture extends wtResource {
       size: {
         width: this.width_,
         height: this.height_,
-        depth: 1
+        depthOrArrayLayers: 1
       },
-      arrayLayerCount: 1,
       sampleCount: this.sampleCount_,
       dimension: '2d',
       mipLevelCount: 1,

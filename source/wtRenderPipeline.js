@@ -59,16 +59,16 @@ class WtRenderPipeline extends wtResource {
     }
     this.pipelineDescriptor_ = {
       layout: this.pipeLineLayout_,
-      vertexStage: { module: this.vertexModule_, entryPoint: 'main' },
-      fragmentStage: { module: this.fragmentModule_, entryPoint: 'main' },
+      vertex: { module: this.vertexModule_, entryPoint: 'main', buffers: [this.vertexBufferState_] },
+      fragment: { module: this.fragmentModule_, entryPoint: 'main', targets: [{ format: 'bgra8unorm' }] },
       vertexState: { vertexBuffers: [this.vertexBufferState_] },
       colorStates: [{ format: 'bgra8unorm' }],
       // colorStates:[ { format: "bgra8unorm", alphaBlend: { srcFactor:
       // "source-alpha", dstFactor: "one-minus-source-alpha", operation: "add"
       // } }],
       rasterizationState: this.rasterState_,
-      depthStencilState: this.depthStencilState_,
-      primitiveTopology: this.primTopology_,
+      depthStencil: this.depthStencilState_,
+      primitive: { topology: this.primTopology_ },
       sampleCount: this.sampleCount_
     }
     this.pipeline_ = super
@@ -82,7 +82,7 @@ class WtRenderPipeline extends wtResource {
       .getDevice()
       .createPipelineLayout({ bindGroupLayouts: [this.bindGroupLayouts_] })
     this.depthStencilState_ = {
-      depthWriteEnabled: true,
+      depthWriteEnabled: false,
       depthCompare: 'less',
       format: 'depth24plus-stencil8'
     }
@@ -92,13 +92,13 @@ class WtRenderPipeline extends wtResource {
     }
     this.pipelineDescriptor_ = {
       layout: this.pipeLineLayout_,
-      vertexStage: { module: this.vertexModule_, entryPoint: 'main' },
-      fragmentStage: { module: this.fragmentModule_, entryPoint: 'main' },
+      vertex: { module: this.vertexModule_, entryPoint: 'main', buffers: [this.vertexBufferState_] },
+      fragment: { module: this.fragmentModule_, entryPoint: 'main', targets: [{ format: 'bgra8unorm' }] },
       vertexState: { vertexBuffers: [this.vertexBufferState_] },
       colorStates: [{ format: 'bgra8unorm' }],
       rasterizationState: this.rasterState_,
       depthStencilState: this.depthStencilState_,
-      primitiveTopology: this.primTopology_,
+      primitive: { topology: this.primTopology_ },
       sampleCount: this.sampleCount_
     }
     this.pipeline_ = super

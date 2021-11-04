@@ -1,7 +1,6 @@
 import { mat4, vec3, vec4 } from 'gl-matrix'
-import { WtBuffer } from './wtBuffer'
-import { Vec4Colors } from './wtContants'
-import { WtBindGroupLayout } from './wtPrimRender'
+import { WtBuffer, Vec4Colors } from './wtBuffer'
+import { WtBindGroupLayout } from './wtBindGroupLayout'
 import { GpuPrimTopology, WtRenderPipeline } from './wtRenderPipeline'
 import { wtResource } from './wtResource'
 import { VertexType, WtVertexDescriptor } from './wtVertexDescriptor'
@@ -72,16 +71,16 @@ class wtPrimRender extends wtResource {
       'primFullScreenVertexBuffer',
       super.getContext()
     )
-    this.pointVertexBuffer_.createElementsVertexBuffer(
+    this.pointVertexBuffer_.createVertexBuffer(
       this.maxNumberOfPrims_ * Float32Array.BYTES_PER_ELEMENT * 8
     )
-    this.lineVertexBuffer_.createElementsVertexBuffer(
+    this.lineVertexBuffer_.createVertexBuffer(
       this.maxNumberOfPrims_ * Float32Array.BYTES_PER_ELEMENT * 8 * 2
     )
-    this.triangleVertexBuffer_.createElementsVertexBuffer(
+    this.triangleVertexBuffer_.createVertexBuffer(
       this.maxNumberOfPrims_ * Float32Array.BYTES_PER_ELEMENT * 8 * 3
     )
-    this.ndcVertexBuffer_.createElementsVertexBuffer(
+    this.ndcVertexBuffer_.createVertexBuffer(
       Float32Array.BYTES_PER_ELEMENT * 8 * 6
     )
     // uniform buffer create
@@ -99,12 +98,12 @@ class wtPrimRender extends wtResource {
     const layOutEntry0 = {
       binding: 0,
       visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
-      type: 'uniform-buffer'
+      buffer: { type: 'uniform', hasDynamicOffset: false, minBindingSize: 0 }
     }
     const layOutEntry1 = {
       binding: 1,
       visibility: GPUShaderStage.FRAGMENT,
-      type: 'storage-buffer'
+      buffer: { type: 'storage', hasDynamicOffset: false, minBindingSize: 0 }
     }
     const uniformBindGroupLayout_ = new WtBindGroupLayout(
       'PrimGroupLayout0',
@@ -144,15 +143,7 @@ class wtPrimRender extends wtResource {
 
   updateUniforms (viewProjection) {
     this.uniformBufferData_.update(viewProjection)
-    super
-      .getDevice()
-      .defaultQueue.writeBuffer(
-        this.uniformBuffer_.getBuffer(),
-        0,
-        this.uniformBufferData_.toArray().buffer,
-        0,
-        this.uniformBuffer_.getSizeInBytes()
-      )
+    this.uniformBuffer_.uploadData(this.uniformBufferData_.toArray())
   }
 
   createPipelines (pointVertexModule, pointFragmentModule, sampleCount) {
@@ -206,7 +197,7 @@ class wtPrimRender extends wtResource {
     this.pixelPipeline_.setBindGroupLayouts(this.uniformsBindGroupLayout1_)
     this.pixelPipeline_.setVertexBufferState(vertexDescriptor.getVertexState())
     this.pixelPipeline_.setSampleCount(sampleCount)
-    this.pixelPipeline_.createNoDepthStencil()
+    this.pixelPipeline_.create()
   }
 
   addPoint (point, color) {
@@ -386,56 +377,23 @@ class wtPrimRender extends wtResource {
 
   update () {
     if (this.pointsUpdated_) {
-      const arrSize = this.numPoints_ * Float32Array.BYTES_PER_ELEMENT * 8
-      super
-        .getDevice()
-        .defaultQueue.writeBuffer(
-          this.pointVertexBuffer_.getBuffer(),
-          0,
-          this.points_.buffer,
-          0,
-          arrSize
-        )
+      // const arrSize = this.numPoints_ * Float32Array.BYTES_PER_ELEMENT * 8
+      this.pointVertexBuffer_.uploadData(this.points_)
       this.pointsUpdated_ = false
     }
     if (this.linesUpdated_) {
-      const arrSize = this.numLines_ * Float32Array.BYTES_PER_ELEMENT * 8 * 2
-      super
-        .getDevice()
-        .defaultQueue.writeBuffer(
-          this.lineVertexBuffer_.getBuffer(),
-          0,
-          this.lines_.buffer,
-          0,
-          arrSize
-        )
+      // const arrSize = this.numLines_ * Float32Array.BYTES_PER_ELEMENT * 8 * 2
+      this.lineVertexBuffer_.uploadData(this.lines_)
       this.linesUpdated_ = false
     }
     if (this.trianglesUpdated_) {
-      const arrSize =
-        this.numTriangles_ * Float32Array.BYTES_PER_ELEMENT * 8 * 3
-      super
-        .getDevice()
-        .defaultQueue.writeBuffer(
-          this.triangleVertexBuffer_.getBuffer(),
-          0,
-          this.triangles_.buffer,
-          0,
-          arrSize
-        )
+      // const arrSize = this.numTriangles_ * Float32Array.BYTES_PER_ELEMENT * 8 * 3
+      this.triangleVertexBuffer_.uploadData(this.triangles_)
       this.trianglesUpdated_ = false
     }
     if (this.screenNdcQuadUpdated_) {
-      const arrSize = Float32Array.BYTES_PER_ELEMENT * 8 * 6
-      super
-        .getDevice()
-        .defaultQueue.writeBuffer(
-          this.ndcVertexBuffer_.getBuffer(),
-          0,
-          this.screenNdcVerts_.buffer,
-          0,
-          arrSize
-        )
+      // const arrSize = Float32Array.BYTES_PER_ELEMENT * 8 * 6
+      this.ndcVertexBuffer_.uploadData(this.screenNdcVerts_)
       this.screenNdcQuadUpdated_ = false
     }
   }
