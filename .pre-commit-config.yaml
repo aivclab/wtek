@@ -15,14 +15,18 @@ repos:
         # Prettier runs on JavaScript as part of eslint
         exclude_types: [ javascript ]
         exclude: ^package\.json
+  - repo: https://github.com/standard/standard
+    rev: master
+    hooks:
+      - id: standard
   - repo: local
     hooks:
-      - id: eslint
-        name: eslint
-        entry: yarn eslint
+      - id: husky-run-pre-commit
+        name: husky
         language: system
-        files: \.js$
-        args: [ '--fix', '--ignore-pattern=!.eslintrc.js' ]
+        entry: node_modules/.bin/husky-run pre-commit
+        pass_filenames: false
+        always_run: true
 #  - repo: https://github.com/Yelp/detect-secrets
 #    rev: 0.9.1
 #    hooks:

@@ -1,4 +1,4 @@
-class wtResource {
+export class WtResource {
   constructor (name, context) {
     this.context_ = context
     this.name_ = name
@@ -21,5 +21,3 @@ class wtResource {
     return this.context_.device_
   }
 }
-
-export { wtResource }

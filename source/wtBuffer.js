@@ -1,5 +1,6 @@
+/* global  GPUBufferUsage,  GPUMapMode */
 import { vec4 } from 'gl-matrix'
-import { wtResource } from './wtResource'
+import { WtResource } from './WtResource'
 
 export const Vec4Colors = {
   White: vec4.fromValues(1.0, 1.0, 1.0, 1.0),
@@ -38,7 +39,7 @@ export const bufferUsage = {
   Unknown: 0x00000
 }
 
-class WtBuffer extends wtResource {
+export class WtBuffer extends WtResource {
   constructor (name, context) {
     super(name, context)
     this.bufferType_ = bufferType.VertexBuffer
@@ -56,7 +57,10 @@ class WtBuffer extends wtResource {
       usage: this.usage_
     }
     this.buffer_ = super.getDevice().createBuffer(bufferDescriptor)
-    this.stagingBuffer_ = super.getDevice().createBuffer({ size: this.sizeInBytes_, usage: bufferUsage.CopySrc | bufferUsage.MapWrite })
+    this.stagingBuffer_ = super.getDevice().createBuffer({
+      size: this.sizeInBytes_,
+      usage: bufferUsage.CopySrc | bufferUsage.MapWrite
+    })
   }
 
   createVertexBufferFromData (data) {
@@ -81,7 +85,10 @@ class WtBuffer extends wtResource {
       usage: this.usage_
     }
     this.buffer_ = super.getDevice().createBuffer(bufferDescriptor)
-    this.stagingBuffer_ = super.getDevice().createBuffer({ size: this.sizeInBytes_, usage: bufferUsage.CopySrc | bufferUsage.MapWrite })
+    this.stagingBuffer_ = super.getDevice().createBuffer({
+      size: this.sizeInBytes_,
+      usage: bufferUsage.CopySrc | bufferUsage.MapWrite
+    })
   }
 
   createUniformBufferFromData (data) {
@@ -102,7 +109,10 @@ class WtBuffer extends wtResource {
       usage: this.usage_
     }
     this.buffer_ = super.getDevice().createBuffer(bufferDescriptor)
-    this.stagingBuffer_ = super.getDevice().createBuffer({ size: this.sizeInBytes_, usage: bufferUsage.CopySrc | bufferUsage.MapWrite })
+    this.stagingBuffer_ = super.getDevice().createBuffer({
+      size: this.sizeInBytes_,
+      usage: bufferUsage.CopySrc | bufferUsage.MapWrite
+    })
   }
 
   getBuffer () {
@@ -124,8 +134,14 @@ class WtBuffer extends wtResource {
   }
 
   uploadData (data) {
-    this.context_.getDevice().queue.writeBuffer(this.buffer_, 0, data.buffer, data.byteOffset, data.byteLength)
+    this.context_
+      .getDevice()
+      .queue.writeBuffer(
+        this.buffer_,
+        0,
+        data.buffer,
+        data.byteOffset,
+        data.byteLength
+      )
   }
 }
-
-export { WtBuffer }

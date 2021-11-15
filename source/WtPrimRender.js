@@ -1,8 +1,10 @@
+/* global GPUShaderStage */
+
 import { mat4, vec3, vec4 } from 'gl-matrix'
 import { WtBindGroupLayout } from './wtBindGroupLayout'
 import { Vec4Colors, WtBuffer } from './wtBuffer'
 import { GpuPrimTopology, WtRenderPipeline } from './wtRenderPipeline'
-import { wtResource } from './wtResource'
+import { WtResource } from './WtResource'
 import { VertexType, WtVertexDescriptor } from './wtVertexDescriptor'
 
 class PrimUniformData {
@@ -38,7 +40,7 @@ class PrimUniformData {
   }
 }
 
-class WtPrimRender extends wtResource {
+export class WtPrimRender extends WtResource {
   constructor (name, context) {
     super(name, context)
     this.layout_ = null
@@ -426,5 +428,3 @@ class WtPrimRender extends wtResource {
     }
   }
 }
-
-export { WtPrimRender }

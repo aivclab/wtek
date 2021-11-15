@@ -1,4 +1,4 @@
-import { wtResource } from './wtResource'
+import { WtResource } from './WtResource'
 
 export const GpuPrimTopology = {
   PointList: 'point-list',
@@ -8,7 +8,7 @@ export const GpuPrimTopology = {
   TriangleStrip: 'triangle-strip'
 }
 
-class WtRenderPipeline extends wtResource {
+export class WtRenderPipeline extends WtResource {
   constructor (name, context) {
     super(name, context)
     this.layout_ = null
@@ -59,8 +59,16 @@ class WtRenderPipeline extends wtResource {
     }
     this.pipelineDescriptor_ = {
       layout: this.pipeLineLayout_,
-      vertex: { module: this.vertexModule_, entryPoint: 'main', buffers: [this.vertexBufferState_] },
-      fragment: { module: this.fragmentModule_, entryPoint: 'main', targets: [{ format: 'bgra8unorm' }] },
+      vertex: {
+        module: this.vertexModule_,
+        entryPoint: 'main',
+        buffers: [this.vertexBufferState_]
+      },
+      fragment: {
+        module: this.fragmentModule_,
+        entryPoint: 'main',
+        targets: [{ format: 'bgra8unorm' }]
+      },
       vertexState: { vertexBuffers: [this.vertexBufferState_] },
       colorStates: [{ format: 'bgra8unorm' }],
       // colorStates:[ { format: "bgra8unorm", alphaBlend: { srcFactor:
@@ -92,8 +100,16 @@ class WtRenderPipeline extends wtResource {
     }
     this.pipelineDescriptor_ = {
       layout: this.pipeLineLayout_,
-      vertex: { module: this.vertexModule_, entryPoint: 'main', buffers: [this.vertexBufferState_] },
-      fragment: { module: this.fragmentModule_, entryPoint: 'main', targets: [{ format: 'bgra8unorm' }] },
+      vertex: {
+        module: this.vertexModule_,
+        entryPoint: 'main',
+        buffers: [this.vertexBufferState_]
+      },
+      fragment: {
+        module: this.fragmentModule_,
+        entryPoint: 'main',
+        targets: [{ format: 'bgra8unorm' }]
+      },
       vertexState: { vertexBuffers: [this.vertexBufferState_] },
       colorStates: [{ format: 'bgra8unorm' }],
       rasterizationState: this.rasterState_,
@@ -111,5 +127,3 @@ class WtRenderPipeline extends wtResource {
     return this.pipeline_
   }
 }
-
-export { WtRenderPipeline }

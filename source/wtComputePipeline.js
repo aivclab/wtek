@@ -1,6 +1,6 @@
-import { wtResource } from './wtResource'
+import { WtResource } from './WtResource'
 
-class WtComputePipeline extends wtResource {
+export class WtComputePipeline extends WtResource {
   constructor (name, context) {
     super(name, context)
     this.layout_ = null
@@ -29,5 +29,3 @@ class WtComputePipeline extends wtResource {
     return this.pipeline_
   }
 }
-
-export { WtComputePipeline }

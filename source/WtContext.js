@@ -1,4 +1,4 @@
-class wtContext {
+export class WtContext {
   constructor (gpu, adapter, device) {
     this.gpu_ = gpu
     this.adapter_ = adapter
@@ -43,5 +43,3 @@ class wtContext {
     this.height_ = height
   }
 }
-
-export { wtContext }

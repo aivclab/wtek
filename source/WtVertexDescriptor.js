@@ -5,7 +5,7 @@ export const VertexType = {
   VT_VertexColorNormal4: 'vertexColorNormal4'
 }
 
-class WtVertexLayout {
+export class WtVertexLayout {
   constructor (format, shaderLocation, offset) {
     this.format_ = format
     this.shaderLocation_ = shaderLocation
@@ -25,7 +25,7 @@ class WtVertexLayout {
   }
 }
 
-class WtVertexDescriptor {
+export class WtVertexDescriptor {
   constructor (vertexType) {
     this.vertexType_ = vertexType
     switch (this.vertexType_) {
@@ -76,6 +76,3 @@ class WtVertexDescriptor {
     return vertexState
   }
 }
-
-export { WtVertexLayout }
-export { WtVertexDescriptor }

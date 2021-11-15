@@ -1,13 +1,16 @@
-import { wtResource } from './wtResource'
+import { WtResource } from './WtResource'
 
 const vertexShaderType = 'vertex'
 const fragmentShaderType = 'fragment'
 const computeShaderType = 'compute'
 
-class WtShader extends wtResource {
+export class WtShader extends WtResource {
+  /*
   constructor (name, context) {
     super(name, context)
   }
+
+   */
 
   createVertexShaderModule (glslang, source) {
     let shaderModule
@@ -61,5 +64,3 @@ class WtShader extends wtResource {
     return shaderModule
   }
 }
-
-export { WtShader }

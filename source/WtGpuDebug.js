@@ -1,4 +1,4 @@
-class wtGpuDebug {
+export class WtGpuDebug {
   getErrorMessage () {
     const message =
       'Your browser does not support <a href="https://gpuweb.github.io/gpuweb/" style="color:#000">WebGPU</a>.'
@@ -17,5 +17,3 @@ class wtGpuDebug {
     return element
   }
 }
-
-export { wtGpuDebug }

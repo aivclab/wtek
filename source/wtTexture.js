@@ -1,4 +1,5 @@
-import { wtResource } from './wtResource'
+/* global GPUTextureUsage */
+import { WtResource } from './WtResource'
 
 export const TextureUsage = {
   TU_COPY_SRC: GPUTextureUsage.COPY_SRC,
@@ -8,7 +9,7 @@ export const TextureUsage = {
   TU_RENDER_ATTACHMENT: GPUTextureUsage.RENDER_ATTACHMENT
 }
 
-class WtTexture extends wtResource {
+export class WtTexture extends WtResource {
   constructor (name, context, usage) {
     super(name, context)
     this.width_ = 1
@@ -73,5 +74,3 @@ class WtTexture extends wtResource {
     return this.textureView_
   }
 }
-
-export { WtTexture }

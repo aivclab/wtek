@@ -1,4 +1,5 @@
-import { wtResource } from './wtResource'
+/* global GPUShaderStage */
+import { WtResource } from './WtResource'
 
 export const BindingType = {
   UniformBuffer: 'vertexBuffer',
@@ -17,7 +18,7 @@ export const GpuBindingStage = {
   ComputeStage: GPUShaderStage.COMPUTE
 }
 
-class WtBindGroupLayout extends wtResource {
+export class WtBindGroupLayout extends WtResource {
   constructor (name, context) {
     super(name, context)
     this.layout_ = null
@@ -56,5 +57,3 @@ class WtBindGroupLayout extends wtResource {
     return true
   }
 }
-
-export { WtBindGroupLayout }

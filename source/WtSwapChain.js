@@ -1,6 +1,6 @@
-import { wtResource } from './wtResource'
+import { WtResource } from './WtResource'
 
-class WtSwapChain extends wtResource {
+export class WtSwapChain extends WtResource {
   constructor (name, context) {
     super(name, context)
     this.swapChain_ = null
@@ -23,5 +23,3 @@ class WtSwapChain extends wtResource {
     return this.swapChain_
   }
 }
-
-export { WtSwapChain }
