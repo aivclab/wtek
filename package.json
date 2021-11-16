@@ -20,11 +20,14 @@
     ".": "./source/index.js"
   },
   "lint-staged": {
-    "*": "npm run fix"
+    "*.@(ts|tsx)": [
+      "npm run fix"
+    ]
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "npm test"
     }
   },
   "files": [
@@ -36,13 +39,15 @@
       "tmp.js",
       "/www/**/*.js",
       "package-lock.json"
-    ]
+    ],
+    "extensions": [".js"]
   },
   "license": "ISC",
   "name": "wtek",
   "scripts": {
     "test": "npx mocha -r esm --experimental-modules --recursive 'tests/{,!(node_modules|exclude)/**}/*.test.js' --reporter mocha-junit-reporter --timeout 60000 --exit",
     "fix": "standard --verbose --fix",
+    "fix-source": "standard source/ --verbose --fix",
     "prepare": "husky install",
     "postinstall": "npm run prepare",
     "pre-commit": "lint-staged"
