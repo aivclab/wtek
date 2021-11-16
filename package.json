@@ -44,7 +44,8 @@
     "test": "npx mocha -r esm --experimental-modules --recursive 'tests/{,!(node_modules|exclude)/**}/*.test.js' --reporter mocha-junit-reporter --timeout 60000 --exit",
     "fix": "standard --verbose --fix",
     "prepare": "husky install",
-    "postinstall": "npm run prepare"
+    "postinstall": "npm run prepare",
+    "pre-commit": "lint-staged"
   },
   "version": "1.0.0"
 }
