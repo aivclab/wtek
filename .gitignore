@@ -1,5 +1,4 @@
 .idea/
-package-lock.json
 test-results.xml
 
 .eslintrc.js
@@ -99,7 +98,3 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
-.idea/
-package-lock.json
-
-test-results.xml
