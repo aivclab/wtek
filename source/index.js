@@ -12,8 +12,8 @@
  }
  */
 
-export * from './wtBindGroupLayout'
-export * from './wtBuffer'
+export * from './WtBindGroupLayout'
+export * from './WtBuffer'
 export * from './wtComputePipeline'
 export * from './wtConstants'
 export * from './WtContext'
@@ -24,5 +24,5 @@ export * from './WtRenderPipeline'
 export * from './WtResource'
 export * from './WtShader'
 export * from './WtSwapChain'
-export * from './wtTexture'
+export * from './WtTexture'
 export * from './WtVertexDescriptor'
