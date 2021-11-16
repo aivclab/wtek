@@ -1,4 +1,14 @@
+.idea/
+package-lock.json
+test-results.xml
+
+.eslintrc.js
+.pre-commit-config.yaml
+/.husky/
+
 .jshintrc
+.idea
+.vscode
 
 # Logs
 logs
