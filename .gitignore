@@ -8,6 +8,7 @@ test-results.xml
 .jshintrc
 .idea
 .vscode
+.prettierrc
 
 # Logs
 logs
