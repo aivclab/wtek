@@ -6,6 +6,7 @@
   "description": "WebGPU engine",
   "devDependencies": {
     "husky": "*",
+    "eslint": "*",
     "standard": "*",
     "esm": "^3.2.25",
     "lint-staged": "^10.5.4",
