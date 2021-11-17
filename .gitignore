@@ -4,7 +4,6 @@ test-results.xml
 .eslintrc.js
 .pre-commit-config.yaml
 
-
 .jshintrc
 .idea
 .vscode
@@ -99,3 +98,5 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
+
+tests/exclude/

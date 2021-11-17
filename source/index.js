@@ -14,8 +14,8 @@
 
 export * from './WtBindGroupLayout'
 export * from './WtBuffer'
-export * from './wtComputePipeline'
-export * from './wtConstants'
+export * from './WtComputePipeline'
+export * from './WtConstants'
 export * from './WtContext'
 export * from './WtGpuDebug'
 export * from './wtImport'

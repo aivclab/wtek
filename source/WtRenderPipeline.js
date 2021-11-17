@@ -72,7 +72,7 @@ export class WtRenderPipeline extends WtResource {
       vertexState: { vertexBuffers: [this.vertexBufferState_] },
       colorStates: [{ format: 'bgra8unorm' }],
       // colorStates:[ { format: "bgra8unorm", alphaBlend: { srcFactor:
-      // "source-alpha", dstFactor: "one-minus-source-alpha", operation: "add"
+      // "src-alpha", dstFactor: "one-minus-src-alpha", operation: "add"
       // } }],
       rasterizationState: this.rasterState_,
       depthStencil: this.depthStencilState_,

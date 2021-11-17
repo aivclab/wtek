@@ -149,15 +149,15 @@ export const wtFilterMode = {
 export const wtBlendFactor = {
   Zero: 'zero',
   One: 'one',
-  SrcColor: 'source-color',
-  OneMinusSrcColor: 'one-minus-source-color',
-  SrcAlpha: 'source-alpha',
-  OneMinusSrcAlpha: 'one-minus-source-alpha',
+  SrcColor: 'src-color',
+  OneMinusSrcColor: 'one-minus-src-color',
+  SrcAlpha: 'src-alpha',
+  OneMinusSrcAlpha: 'one-minus-src-alpha',
   DstColor: 'dst-color',
   OneMinusDstColor: 'one-minus-dst-color',
   DstAlpha: 'dst-alpha',
   OneMinusDstAlpha: 'one-minus-dst-alpha',
-  SrcAlphaSaturated: 'source-alpha-saturated',
+  SrcAlphaSaturated: 'src-alpha-saturated',
   BlendColor: 'blend-color',
   OneMinusBlendColor: 'one-minus-blend-color'
 }
