@@ -20,7 +20,7 @@
     ".": "./source/index.js"
   },
   "lint-staged": {
-    "*.@(ts|tsx)": [
+    "*.@(js|jsx|ts|tsx)": [
       "npm run fix"
     ]
   },
