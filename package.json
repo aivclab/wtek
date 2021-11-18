@@ -9,8 +9,6 @@
     "esm": "^3.2.25",
     "husky": "^7.0.4",
     "lint-staged": "^10.5.4",
-    "mocha": "^9.1.3",
-    "mocha-junit-reporter": "^2.0.2",
     "standard": "*"
   },
   "directories": {
@@ -45,7 +43,6 @@
     "fix": "standard --verbose --fix",
     "fix-source": "standard source/ --verbose --fix",
     "prepare": "husky install",
-    "postinstall": "npm run prepare",
     "pre-commit": "lint-staged"
   },
   "version": "1.0.0"
