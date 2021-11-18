@@ -214,5 +214,5 @@ export const wtInputStepMode = {
   Vertex: 'vertex',
   Instance: 'instance'
 }
-export const BlendColorFactor = 211
-export const OneMinusBlendColorFactor = 212
+export const blendColorFactor = 211
+export const oneMinusBlendColorFactor = 212

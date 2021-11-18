@@ -1,7 +1,7 @@
 /* global GPUShaderStage */
 import { WtResource } from './WtResource'
 
-export const BindingType = {
+export const bindingType = {
   UniformBuffer: 'vertexBuffer',
   StorageBuffer: 'uniform-buffer',
   StorageBufferReadOnly: 'readonly-storage-buffer',
@@ -12,7 +12,7 @@ export const BindingType = {
   StorageTextureReadOnly: 'readonly-storage-texture',
   StorageTextureWriteOnly: 'writeonly-storage-texture'
 }
-export const GpuBindingStage = {
+export const gpuBindingStage = {
   VertexStage: GPUShaderStage.VERTEX,
   FragmentStage: GPUShaderStage.FRAGMENT,
   ComputeStage: GPUShaderStage.COMPUTE
