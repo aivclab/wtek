@@ -1,9 +1,4 @@
 const byteSizeOfFloat = 4
-export const vertexType = {
-  VT_Vertex4: 'vertex4',
-  VT_VertexColor4: 'vertexColor4',
-  VT_VertexColorNormal4: 'vertexColorNormal4'
-}
 
 export class WtVertexLayout {
   constructor (format, shaderLocation, offset) {

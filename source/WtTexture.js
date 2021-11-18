@@ -1,7 +1,7 @@
 /* global GPUTextureUsage */
 import { WtResource } from './WtResource'
 
-export const textureUsage = {
+export const wtTextureUsage = {
   TU_COPY_SRC: GPUTextureUsage.COPY_SRC,
   TU_COPY_DST: GPUTextureUsage.COPY_DST,
   TU_SAMPLED: GPUTextureUsage.SAMPLED,

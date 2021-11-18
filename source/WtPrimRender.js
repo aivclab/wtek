@@ -2,10 +2,11 @@
 
 import { mat4, vec3, vec4 } from 'gl-matrix'
 import { WtBindGroupLayout } from './WtBindGroupLayout'
-import { vec4Colors, WtBuffer } from './WtBuffer'
+import { WtBuffer } from './WtBuffer'
 import { GpuPrimTopology, WtRenderPipeline } from './wtRenderPipeline'
 import { WtResource } from './WtResource'
-import { VertexType, WtVertexDescriptor } from './wtVertexDescriptor'
+import { WtVertexDescriptor } from './wtVertexDescriptor'
+import { wVec4Colors, wVertexType } from 'wfundament'
 
 class PrimUniformData {
   constructor () {
@@ -149,7 +150,9 @@ export class WtPrimRender extends WtResource {
   }
 
   createPipelines (pointVertexModule, pointFragmentModule, sampleCount) {
-    const vertexDescriptor = new WtVertexDescriptor(VertexType.VT_VertexColor4)
+    const vertexDescriptor = new WtVertexDescriptor(
+      wVertexType.VT_VertexColor4
+    )
     this.pointPipeline_ = new WtRenderPipeline(
       'pointPipeline',
       super.getContext()
@@ -188,7 +191,9 @@ export class WtPrimRender extends WtResource {
   }
 
   createPixelPipeline (pixelVertexModule, pixelFragmentModule, sampleCount) {
-    const vertexDescriptor = new WtVertexDescriptor(VertexType.VT_VertexColor4)
+    const vertexDescriptor = new WtVertexDescriptor(
+      wVertexType.VT_VertexColor4
+    )
     this.pixelPipeline_ = new WtRenderPipeline(
       'pixelPipeline',
       super.getContext()
@@ -284,16 +289,16 @@ export class WtPrimRender extends WtResource {
       const p1 = vec3.fromValues(xpos, offset_, lineLength * 0.5)
       const p2 = vec3.fromValues(-lineLength * 0.5, offset_, xpos)
       const p3 = vec3.fromValues(lineLength * 0.5, offset_, xpos)
-      this.addLine(p0, vec4Colors.Grey, p1, vec4Colors.Grey)
-      this.addLine(p2, vec4Colors.Grey, p3, vec4Colors.Grey)
+      this.addLine(p0, wVec4Colors.Grey, p1, wVec4Colors.Grey)
+      this.addLine(p2, wVec4Colors.Grey, p3, wVec4Colors.Grey)
       xpos += step
     }
     const p0 = vec3.fromValues(-dim * 0.5 * step, mainOffset_, 0.0)
     const p1 = vec3.fromValues(dim * 0.5 * step, mainOffset_, 0.0)
     const p2 = vec3.fromValues(0.0, mainOffset_, -dim * 0.5 * step)
     const p3 = vec3.fromValues(0.0, mainOffset_, dim * 0.5 * step)
-    this.addLine(p0, vec4Colors.White, p1, vec4Colors.White)
-    this.addLine(p2, vec4Colors.White, p3, vec4Colors.White)
+    this.addLine(p0, wVec4Colors.White, p1, wVec4Colors.White)
+    this.addLine(p2, wVec4Colors.White, p3, wVec4Colors.White)
   }
 
   addOrigin (pos, scale) {
@@ -307,9 +312,9 @@ export class WtPrimRender extends WtResource {
     vec4.add(vX, p0, pX)
     vec4.add(vY, p0, pY)
     vec4.add(vZ, p0, pZ)
-    this.addLine(p0, vec4Colors.Red, vX, vec4Colors.Red)
-    this.addLine(p0, vec4Colors.Green, vY, vec4Colors.Green)
-    this.addLine(p0, vec4Colors.Blue, vZ, vec4Colors.Blue)
+    this.addLine(p0, wVec4Colors.Red, vX, wVec4Colors.Red)
+    this.addLine(p0, wVec4Colors.Green, vY, wVec4Colors.Green)
+    this.addLine(p0, wVec4Colors.Blue, vZ, wVec4Colors.Blue)
   }
 
   addImageQuad (xmin, xmax, ymin, ymax) {

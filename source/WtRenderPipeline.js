@@ -1,6 +1,6 @@
 import { WtResource } from './WtResource'
 
-export const gpuPrimTopology = {
+export const wtGpuPrimTopology = {
   PointList: 'point-list',
   LineList: 'line-list',
   LineStrip: 'line-strip',
@@ -15,7 +15,7 @@ export class WtRenderPipeline extends WtResource {
     this.layoutEntries_ = []
     this.vertexBufferState_ = null
     this.bindGroupLayouts_ = null
-    this.primTopology_ = gpuPrimTopology.TriangleList
+    this.primTopology_ = wtGpuPrimTopology.TriangleList
     this.sampleCount_ = 1
     this.pipeline_ = null
   }
