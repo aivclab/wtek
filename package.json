@@ -1,21 +1,49 @@
 {
-  "name": "wtek",
-  "version": "1.0.0",
-  "description": "WebGPU engine",
-  "main": "src/index.js",
-  "scripts": {
-    "index": "create-index ./src",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Peter Trier",
-  "license": "ISC",
   "dependencies": {
     "gl-matrix": "^3.3.0"
   },
-  "exports": {
-    "./": "./src/"
-  },
+  "description": "WebGPU engine",
   "devDependencies": {
-    "create-index": "^2.6.0"
-  }
+    "eslint": "*",
+    "esm": "^3.2.25",
+    "husky": "^7.0.4",
+    "lint-staged": "^10.5.4",
+    "standard": "*"
+  },
+  "directories": {
+    "wtek": "source"
+  },
+  "exports": {
+    ".": "./source/index.js"
+  },
+  "lint-staged": {
+    "*.@(js|jsx|ts|tsx)": [
+      "npm run fix"
+    ]
+  },
+  "files": [
+    "source/**/*.js"
+  ],
+  "standard": {
+    "ignore": [
+      "**/exclude/",
+      "tmp.js",
+      "/www/**/*.js",
+      "package-lock.json"
+    ],
+    "extensions": [
+      ".js"
+    ]
+  },
+  "license": "ISC",
+  "name": "wtek",
+  "scripts": {
+    "test": "npx mocha -r esm --experimental-modules --recursive 'tests/{,!(node_modules|exclude)/**}/*.test.js' --reporter mocha-junit-reporter --timeout 60000 --exit",
+    "fix": "standard --verbose --fix",
+    "fix-source": "standard source/ --verbose --fix",
+    "prepare": "husky install",
+    "pre-commit": "lint-staged"
+  },
+  "version": "1.0.0"
 }
