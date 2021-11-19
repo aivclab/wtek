@@ -1,31 +1,13 @@
 /* global  GPUBufferUsage,  GPUMapMode */
-import { vec4 } from 'gl-matrix'
 import { WtResource } from './WtResource'
 
-export const Vec4Colors = {
-  White: vec4.fromValues(1.0, 1.0, 1.0, 1.0),
-  Black: vec4.fromValues(0.0, 0.0, 0.0, 1.0),
-  Red: vec4.fromValues(1.0, 0.0, 0.0, 1.0),
-  Green: vec4.fromValues(0.0, 1.0, 0.0, 1.0),
-  Blue: vec4.fromValues(0.0, 0.0, 1.0, 1.0),
-  Yellow: vec4.fromValues(1.0, 1.0, 0.0, 1.0),
-  DarkGrey: vec4.fromValues(0.25, 0.25, 0.25, 1.0),
-  Grey: vec4.fromValues(0.5, 0.5, 0.5, 1.0),
-  LightGrey: vec4.fromValues(0.75, 0.75, 0.75, 1.0)
-}
-export const Vec4Basics = {
-  Zero: vec4.fromValues(0.0, 0.0, 0.0, 1.0),
-  X: vec4.fromValues(1.0, 0.0, 0.0, 1.0),
-  Y: vec4.fromValues(0.0, 1.0, 0.0, 1.0),
-  Z: vec4.fromValues(0.0, 0.0, 1.0, 1.0)
-}
-
-export const bufferType = {
+export const wtBufferType = {
   VertexBuffer: 'vertexBuffer',
   UniformBuffer: 'uniform-buffer',
   StorageBuffer: 'storageBuffer'
 }
-export const bufferUsage = {
+
+export const wtBufferUsage = {
   MapRead: GPUBufferUsage.MAP_READ,
   MapWrite: GPUBufferUsage.MAP_WRITE,
   CopySrc: GPUBufferUsage.COPY_SRC,
@@ -42,15 +24,15 @@ export const bufferUsage = {
 export class WtBuffer extends WtResource {
   constructor (name, context) {
     super(name, context)
-    this.bufferType_ = bufferType.VertexBuffer
-    this.usage_ = bufferUsage.Unknown
+    this.bufferType_ = wtBufferType.VertexBuffer
+    this.usage_ = wtBufferUsage.Unknown
     this.buffer_ = null
     this.stagingBuffer_ = null
     this.sizeInBytes_ = 0
   }
 
   createVertexBuffer (sizeInBytes) {
-    this.usage_ = bufferUsage.Vertex | bufferUsage.CopyDst
+    this.usage_ = wtBufferUsage.Vertex | wtBufferUsage.CopyDst
     this.sizeInBytes_ = sizeInBytes
     const bufferDescriptor = {
       size: this.sizeInBytes_,
@@ -59,12 +41,12 @@ export class WtBuffer extends WtResource {
     this.buffer_ = super.getDevice().createBuffer(bufferDescriptor)
     this.stagingBuffer_ = super.getDevice().createBuffer({
       size: this.sizeInBytes_,
-      usage: bufferUsage.CopySrc | bufferUsage.MapWrite
+      usage: wtBufferUsage.CopySrc | wtBufferUsage.MapWrite
     })
   }
 
   createVertexBufferFromData (data) {
-    this.usage_ = bufferUsage.Vertex
+    this.usage_ = wtBufferUsage.Vertex
     const bufferDescriptor = {
       size: data.byteLength,
       usage: this.usage_,
@@ -77,8 +59,8 @@ export class WtBuffer extends WtResource {
   }
 
   createUniformBuffer (sizeInBytes) {
-    this.usage_ = bufferUsage.Uniform | bufferUsage.CopyDst // |
-    // bufferUsage.MapWrite;
+    this.usage_ = wtBufferUsage.Uniform | wtBufferUsage.CopyDst // |
+    // wtBufferUsage.MapWrite;
     this.sizeInBytes_ = sizeInBytes
     const bufferDescriptor = {
       size: this.sizeInBytes_,
@@ -87,12 +69,12 @@ export class WtBuffer extends WtResource {
     this.buffer_ = super.getDevice().createBuffer(bufferDescriptor)
     this.stagingBuffer_ = super.getDevice().createBuffer({
       size: this.sizeInBytes_,
-      usage: bufferUsage.CopySrc | bufferUsage.MapWrite
+      usage: wtBufferUsage.CopySrc | wtBufferUsage.MapWrite
     })
   }
 
   createUniformBufferFromData (data) {
-    this.usage_ = bufferUsage.Uniform | bufferUsage.CopyDst
+    this.usage_ = wtBufferUsage.Uniform | wtBufferUsage.CopyDst
     const bufferDescriptor = {
       size: data.byteLength,
       usage: this.usage_
@@ -102,7 +84,7 @@ export class WtBuffer extends WtResource {
   }
 
   createStorageBuffer (sizeInBytes) {
-    this.usage_ = bufferUsage.Storage | GPUBufferUsage.COPY_SRC
+    this.usage_ = wtBufferUsage.Storage | GPUBufferUsage.COPY_SRC
     this.sizeInBytes_ = sizeInBytes
     const bufferDescriptor = {
       size: this.sizeInBytes_,
@@ -111,7 +93,7 @@ export class WtBuffer extends WtResource {
     this.buffer_ = super.getDevice().createBuffer(bufferDescriptor)
     this.stagingBuffer_ = super.getDevice().createBuffer({
       size: this.sizeInBytes_,
-      usage: bufferUsage.CopySrc | bufferUsage.MapWrite
+      usage: wtBufferUsage.CopySrc | wtBufferUsage.MapWrite
     })
   }
 

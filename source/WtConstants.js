@@ -5,6 +5,7 @@ export const wtPrimitiveTopology = {
   TriangleList: 'triangle-list',
   TriangleStrip: 'triangle-strip'
 }
+
 export const wtCompareFunction = {
   Never: 'never',
   Less: 'less',
@@ -15,26 +16,32 @@ export const wtCompareFunction = {
   GreaterEqual: 'greater-equal',
   Always: 'always'
 }
+
 export const wtStoreOp = {
   Store: 'store',
   Clear: 'clear'
 }
+
 export const wtLoadOp = {
   Load: 'load'
 }
+
 export const wtFrontFace = {
   CCW: 'ccw',
   CW: 'cw'
 }
+
 export const wtCullMode = {
   None: 'none',
   Front: 'front',
   Back: 'back'
 }
+
 export const wtIndexFormat = {
   Uint16: 'uint16',
   Uint32: 'uint32'
 }
+
 export const wtVertexFormat = {
   Uchar2: 'uchar2',
   Uchar4: 'uchar4',
@@ -67,6 +74,7 @@ export const wtVertexFormat = {
   Int3: 'int3',
   Int4: 'int4'
 }
+
 export const wtTextureFormat = {
   // 8-bit formats
   R8Unorm: 'r8unorm',
@@ -137,15 +145,18 @@ export const wtTextureFormat = {
   // 'depth32float-stencil8' extension
   Depth32FloatStencil8: 'depth32float-stencil8'
 }
+
 export const wtAddressMode = {
   ClampToEdge: 'clamp-to-edge',
   Repeat: 'repeat',
   MirrorRepeat: 'mirror-repeat'
 }
+
 export const wtFilterMode = {
   Linear: 'linear',
   Nearest: 'nearest'
 }
+
 export const wtBlendFactor = {
   Zero: 'zero',
   One: 'one',
@@ -161,6 +172,7 @@ export const wtBlendFactor = {
   BlendColor: 'blend-color',
   OneMinusBlendColor: 'one-minus-blend-color'
 }
+
 export const wtBlendOperation = {
   Add: 'add',
   Subtract: 'subtract',
@@ -168,6 +180,7 @@ export const wtBlendOperation = {
   Min: 'min',
   Max: 'max'
 }
+
 export const wtColorWriteFlags = {
   None: 0,
   Red: 0x1,
@@ -176,6 +189,7 @@ export const wtColorWriteFlags = {
   Alpha: 0x8,
   All: 0xf
 }
+
 export const wtStencilOperation = {
   Keep: 'keep',
   Zero: 'zero',
@@ -186,6 +200,7 @@ export const wtStencilOperation = {
   IncrementWrap: 'increment-wrap',
   DecrementWrap: 'decrement-wrap'
 }
+
 export const wtBindingType = {
   UniformBuffer: 'uniform-buffer',
   StorageBuffer: 'storage-buffer',
@@ -202,6 +217,7 @@ export const wtTextureDimension = {
   TwoD: '2d',
   ThreeD: '3d'
 }
+
 export const wtTextureViewDimension = {
   OneD: '1d',
   TwoD: '2d',
@@ -210,9 +226,11 @@ export const wtTextureViewDimension = {
   CubeArray: 'cube-array',
   ThreeD: '3d'
 }
+
 export const wtInputStepMode = {
   Vertex: 'vertex',
   Instance: 'instance'
 }
-export const BlendColorFactor = 211
-export const OneMinusBlendColorFactor = 212
+
+export const wtBlendColorFactor = 211
+export const wtOneMinusBlendColorFactor = 212

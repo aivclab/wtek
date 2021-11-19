@@ -1,9 +1,4 @@
 const byteSizeOfFloat = 4
-export const VertexType = {
-  VT_Vertex4: 'vertex4',
-  VT_VertexColor4: 'vertexColor4',
-  VT_VertexColorNormal4: 'vertexColorNormal4'
-}
 
 export class WtVertexLayout {
   constructor (format, shaderLocation, offset) {
@@ -29,18 +24,18 @@ export class WtVertexDescriptor {
   constructor (vertexType) {
     this.vertexType_ = vertexType
     switch (this.vertexType_) {
-      case VertexType.VT_Vertex4:
+      case vertexType.VT_Vertex4:
         this.vertexLayout_ = [new WtVertexLayout('float32x4', 0, 0)]
         this.sizeInBytes_ = 4 * byteSizeOfFloat
         break
-      case VertexType.VT_VertexColor4:
+      case vertexType.VT_VertexColor4:
         this.vertexLayout_ = [
           new WtVertexLayout('float32x4', 0, 0),
           new WtVertexLayout('float32x4', 1, 4 * byteSizeOfFloat)
         ]
         this.sizeInBytes_ = 8 * byteSizeOfFloat
         break
-      case VertexType.VT_VertexColorNormal4:
+      case vertexType.VT_VertexColorNormal4:
         this.vertexLayout_ = [
           new WtVertexLayout('float32x4', 0, 0),
           new WtVertexLayout('float32x4', 1, 4 * byteSizeOfFloat),
