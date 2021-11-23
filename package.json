@@ -1,7 +1,8 @@
 {
   "author": "Heider, Kjeldsen & Trier",
   "dependencies": {
-    "gl-matrix": "^3.3.0"
+    "gl-matrix": "^3.3.0",
+    "wfundament": "ssh://git@bitbucket.alexandra.dk:7999/rkin/wfundament.git#master"
   },
   "description": "WebGPU engine",
   "devDependencies": {
