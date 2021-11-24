@@ -1,8 +1,10 @@
 {
   "author": "Heider, Kjeldsen & Trier",
   "dependencies": {
-    "gl-matrix": "^3.3.0",
-    "wfundament": "git+ssh://git@bitbucket.alexandra.dk:7999/rkin/wfundament.git#master"
+    "gl-matrix": "^3.3.0"
+  },
+  "pendingDepCiFails": {
+    "wfundament": "git+ssh://git@bitbucket.alexandra.dk:7999/rkin/wfundament.git"
   },
   "description": "WebGPU engine",
   "devDependencies": {
