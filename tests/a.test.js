@@ -1,2 +1,2 @@
-const assert = require('assert')
-assert.strictEqual(3, 3)
+/* global test,expect */
+test('sanity', () => expect(3).toBe(3))
