@@ -40,8 +40,8 @@
   "license": "ISC",
   "name": "wtek",
   "scripts": {
-    "fix": "standard --verbose --fix",
-    "fix-source": "standard source/ --verbose --fix",
+    "standard-lint": "standard --verbose",
+    "stanadar-fix": "standard source/ --verbose --fix",
     "prepare": "husky install",
     "pre-commit": "lint-staged"
   },
