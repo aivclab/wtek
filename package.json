@@ -3,12 +3,13 @@
   "dependencies": {
     "gl-matrix": "^3.3.0"
   },
-  "pendingDepCiFails": {
+  "peerDependencies": {
     "wfundament": "git+ssh://git@bitbucket.alexandra.dk:7999/rkin/wfundament.git"
   },
   "description": "WebGPU engine",
   "devDependencies": {
     "eslint": "*",
+    "eslint-plugin-import": "^2.25.3",
     "cross-env": "^7.0.3",
     "esm": "^3.2.25",
     "husky": "^7.0.4",
@@ -35,6 +36,7 @@
       "**/exclude/",
       "tmp.js",
       "/www/**/*.js",
+      "node_modules/**/*.js",
       "package-lock.json"
     ],
     "extensions": [
@@ -44,10 +46,10 @@
   "license": "ISC",
   "name": "wtek",
   "scripts": {
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --ci",
     "fix": "npm run standard-fix",
     "standard-lint": "standard --verbose",
-    "standard-fix": "standard source/ --verbose --fix",
+    "standard-fix": "standard source --verbose --fix",
     "prepare": "husky install",
     "pre-commit": "lint-staged"
   },

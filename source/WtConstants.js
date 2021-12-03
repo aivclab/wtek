@@ -201,17 +201,6 @@ export const wtStencilOperation = {
   DecrementWrap: 'decrement-wrap'
 }
 
-export const wtBindingType = {
-  UniformBuffer: 'uniform-buffer',
-  StorageBuffer: 'storage-buffer',
-  ReadonlyStorageBuffer: 'readonly-storage-buffer',
-  Sampler: 'sampler',
-  ComparisonSampler: 'comparison-sampler',
-  SampledTexture: 'sampled-texture',
-  MultisampledTexture: 'multisampled-texture',
-  ReadonlyStorageTexture: 'readonly-storage-texture',
-  WriteonlyStorageTexture: 'writeonly-storage-texture'
-}
 export const wtTextureDimension = {
   OneD: '1d',
   TwoD: '2d',

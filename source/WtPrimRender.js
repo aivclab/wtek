@@ -3,9 +3,9 @@
 import { mat4, vec3, vec4 } from 'gl-matrix'
 import { WtBindGroupLayout } from './WtBindGroupLayout'
 import { WtBuffer } from './WtBuffer'
-import { GpuPrimTopology, WtRenderPipeline } from './wtRenderPipeline'
+import { wtGpuPrimTopology, WtRenderPipeline } from './WtRenderPipeline'
 import { WtResource } from './WtResource'
-import { WtVertexDescriptor } from './wtVertexDescriptor'
+import { WtVertexDescriptor } from './WtVertexDescriptor'
 import { wVec4Colors, wVertexType } from 'wfundament'
 
 class PrimUniformData {
@@ -89,8 +89,8 @@ export class WtPrimRender extends WtResource {
     // uniform buffer create
     this.uniformBufferData_ = new PrimUniformData()
     const uniformBufferSize =
-      this.uniformBufferData_.dataSizeInFloats_ *
-      Float32Array.BYTES_PER_ELEMENT
+            this.uniformBufferData_.dataSizeInFloats_ *
+            Float32Array.BYTES_PER_ELEMENT
     this.uniformBufferData_.setScreenDimension(
       super.getContext().getWidth(),
       super.getContext().getHeight()
@@ -157,7 +157,7 @@ export class WtPrimRender extends WtResource {
       'pointPipeline',
       super.getContext()
     )
-    this.pointPipeline_.setPrimTopology(GpuPrimTopology.PointList)
+    this.pointPipeline_.setPrimTopology(wtGpuPrimTopology.PointList)
     this.pointPipeline_.setVertexModule(pointVertexModule)
     this.pointPipeline_.setFragmentModule(pointFragmentModule)
     this.pointPipeline_.setBindGroupLayouts(this.uniformsBindGroupLayout_)
@@ -168,7 +168,7 @@ export class WtPrimRender extends WtResource {
       'linePipeline',
       super.getContext()
     )
-    this.linePipeline_.setPrimTopology(GpuPrimTopology.LineList)
+    this.linePipeline_.setPrimTopology(wtGpuPrimTopology.LineList)
     this.linePipeline_.setVertexModule(pointVertexModule)
     this.linePipeline_.setFragmentModule(pointFragmentModule)
     this.linePipeline_.setBindGroupLayouts(this.uniformsBindGroupLayout_)
@@ -179,7 +179,7 @@ export class WtPrimRender extends WtResource {
       'trianglePipeline',
       super.getContext()
     )
-    this.trianglePipeline_.setPrimTopology(GpuPrimTopology.TriangleList)
+    this.trianglePipeline_.setPrimTopology(wtGpuPrimTopology.TriangleList)
     this.trianglePipeline_.setVertexModule(pointVertexModule)
     this.trianglePipeline_.setFragmentModule(pointFragmentModule)
     this.trianglePipeline_.setBindGroupLayouts(this.uniformsBindGroupLayout_)
@@ -198,7 +198,7 @@ export class WtPrimRender extends WtResource {
       'pixelPipeline',
       super.getContext()
     )
-    this.pixelPipeline_.setPrimTopology(GpuPrimTopology.TriangleList)
+    this.pixelPipeline_.setPrimTopology(wtGpuPrimTopology.TriangleList)
     this.pixelPipeline_.setVertexModule(pixelVertexModule)
     this.pixelPipeline_.setFragmentModule(pixelFragmentModule)
     this.pixelPipeline_.setBindGroupLayouts(this.uniformsBindGroupLayout1_)
