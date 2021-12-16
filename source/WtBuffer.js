@@ -31,6 +31,12 @@ export class WtBuffer extends WtResource {
     this.sizeInBytes_ = 0
   }
 
+  destroy () {
+    if (this.buffer_) {
+      this.buffer_.destroy()
+    }
+  }
+
   createVertexBuffer (sizeInBytes) {
     this.usage_ = wtBufferUsage.Vertex | wtBufferUsage.CopyDst
     this.sizeInBytes_ = sizeInBytes
@@ -47,6 +53,22 @@ export class WtBuffer extends WtResource {
 
   createVertexBufferFromData (data) {
     this.usage_ = wtBufferUsage.Vertex
+    const bufferDescriptor = {
+      size: data.byteLength,
+      usage: this.usage_,
+      mappedAtCreation: true
+    }
+    this.buffer_ = super.getDevice().createBuffer(bufferDescriptor)
+    const mapped = new Uint8Array(this.buffer_.getMappedRange())
+    mapped.set(new Uint8Array(data.buffer, data.byteOffset, data.byteLength))
+    this.buffer_.unmap()
+  }
+
+  /*
+   * @param {ArrayBuffer} data
+   */
+  createStagingBufferFromData (data) {
+    this.usage_ = GPUBufferUsage.COPY_SRC
     const bufferDescriptor = {
       size: data.byteLength,
       usage: this.usage_,
@@ -84,7 +106,7 @@ export class WtBuffer extends WtResource {
   }
 
   createStorageBuffer (sizeInBytes) {
-    this.usage_ = wtBufferUsage.Storage | GPUBufferUsage.COPY_SRC
+    this.usage_ = wtBufferUsage.Storage | GPUBufferUsage.COPY_SRC | GPUBufferUsage.COPY_DST
     this.sizeInBytes_ = sizeInBytes
     const bufferDescriptor = {
       size: this.sizeInBytes_,

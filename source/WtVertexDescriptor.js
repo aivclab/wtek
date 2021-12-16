@@ -1,3 +1,4 @@
+import { wVertexType } from 'wfundament'
 const byteSizeOfFloat = 4
 
 export class WtVertexLayout {
@@ -24,18 +25,18 @@ export class WtVertexDescriptor {
   constructor (vertexType) {
     this.vertexType_ = vertexType
     switch (this.vertexType_) {
-      case vertexType.VT_Vertex4:
+      case wVertexType.VT_Vertex4:
         this.vertexLayout_ = [new WtVertexLayout('float32x4', 0, 0)]
         this.sizeInBytes_ = 4 * byteSizeOfFloat
         break
-      case vertexType.VT_VertexColor4:
+      case wVertexType.VT_VertexColor4:
         this.vertexLayout_ = [
           new WtVertexLayout('float32x4', 0, 0),
           new WtVertexLayout('float32x4', 1, 4 * byteSizeOfFloat)
         ]
         this.sizeInBytes_ = 8 * byteSizeOfFloat
         break
-      case vertexType.VT_VertexColorNormal4:
+      case wVertexType.VT_VertexColorNormal4:
         this.vertexLayout_ = [
           new WtVertexLayout('float32x4', 0, 0),
           new WtVertexLayout('float32x4', 1, 4 * byteSizeOfFloat),
