@@ -1,13 +1,14 @@
-/* global GPUTextureUsage */
 import { WtResource } from './WtResource'
 import { WtBuffer } from './WtBuffer'
 
+// Must be defined as const enums to support implementations with undefined
+// GPUTextureUsage
 export const wtTextureUsage = {
-  TU_COPY_SRC: GPUTextureUsage.COPY_SRC,
-  TU_COPY_DST: GPUTextureUsage.COPY_DST,
-  TU_SAMPLED: GPUTextureUsage.SAMPLED,
-  TU_STORAGE: GPUTextureUsage.STORAGE,
-  TU_RENDER_ATTACHMENT: GPUTextureUsage.RENDER_ATTACHMENT
+  TU_COPY_SRC: 0x1, // GPUTextureUsage.COPY_SRC,
+  TU_COPY_DST: 0x2, // GPUTextureUsage.COPY_DST,
+  TU_TEXTURE_BINDING: 0x4, // GPUTextureUsage.SAMPLED_BINDING,
+  TU_STORAGE_BINDING: 0x8, // GPUTextureUsage.STORAGE_BINDING,
+  TU_RENDER_ATTACHMENT: 0x10 // GPUTextureUsage.RENDER_ATTACHMENT
 }
 
 export class WtTexture extends WtResource {
@@ -44,7 +45,6 @@ export class WtTexture extends WtResource {
     if (this.format_.search(/32/) > 0) {
       bytesPerRow *= 4
     }
-    //console.log(data)
 
     commandEncoder.copyBufferToTexture({ buffer: stagingBuffer.getBuffer(), bytesPerRow: bytesPerRow }, { texture: this.texture_ }, { width: this.width_, height: this.height_ })
 

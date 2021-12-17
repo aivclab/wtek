@@ -7,17 +7,19 @@ export const wtBufferType = {
   StorageBuffer: 'storageBuffer'
 }
 
+// Must be defined as const enums to support implementations with undefined
+// GPUBufferUsage
 export const wtBufferUsage = {
-  MapRead: GPUBufferUsage.MAP_READ,
-  MapWrite: GPUBufferUsage.MAP_WRITE,
-  CopySrc: GPUBufferUsage.COPY_SRC,
-  CopyDst: GPUBufferUsage.COPY_DST,
-  Index: GPUBufferUsage.INDEX,
-  Vertex: GPUBufferUsage.VERTEX,
-  Uniform: GPUBufferUsage.UNIFORM,
-  Storage: GPUBufferUsage.STORAGE,
-  Indirect: GPUBufferUsage.INDIRECT,
-  QueryResult: GPUBufferUsage.QUERY_RESOLVE,
+  MapRead: 0x1, // GPUBufferUsage.MAP_READ,
+  MapWrite: 0x2, // GPUBufferUsage.MAP_WRITE,
+  CopySrc: 0x4, // GPUBufferUsage.COPY_SRC,
+  CopyDst: 0x8, // GPUBufferUsage.COPY_DST,
+  Index: 0x10, // GPUBufferUsage.INDEX,
+  Vertex: 0x20, // GPUBufferUsage.VERTEX,
+  Uniform: 0x40, // GPUBufferUsage.UNIFORM,
+  Storage: 0x80, // GPUBufferUsage.STORAGE,
+  Indirect: 0x100, // GPUBufferUsage.INDIRECT,
+  QueryResult: 0x200, // GPUBufferUsage.QUERY_RESOLVE,
   Unknown: 0x00000
 }
 
