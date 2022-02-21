@@ -1,7 +1,7 @@
 {
   "author": "Heider, Kjeldsen & Trier",
   "dependencies": {
-    "gl-matrix": "^3.3.0"
+    "gl-matrix": "^3.4.3"
   },
   "description": "WebGPU engine",
   "devDependencies": {
