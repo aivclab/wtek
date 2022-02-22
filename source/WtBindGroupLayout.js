@@ -1,21 +1,11 @@
-/* global GPUShaderStage */
 import { WtResource } from './WtResource'
 
-export const wtBindingType = {
-  UniformBuffer: 'vertexBuffer',
-  StorageBuffer: 'uniform-buffer',
-  StorageBufferReadOnly: 'readonly-storage-buffer',
-  Sampler: 'sampler',
-  CompareSampler: 'comparison-sampler',
-  SampledTexture: 'sampled-texture',
-  MultiSampleTexture: 'multisampled-texture',
-  StorageTextureReadOnly: 'readonly-storage-texture',
-  StorageTextureWriteOnly: 'writeonly-storage-texture'
-}
+// Must be defined as const enums to support implementations with undefined
+// GPUShaderStage
 export const wtGpuBindingStage = {
-  VertexStage: GPUShaderStage.VERTEX,
-  FragmentStage: GPUShaderStage.FRAGMENT,
-  ComputeStage: GPUShaderStage.COMPUTE
+  VertexStage: 0x1, // GPUShaderStage.VERTEX,
+  FragmentStage: 0x2, // GPUShaderStage.FRAGMENT,
+  ComputeStage: 0x4 // GPUShaderStage.COMPUTE
 }
 
 export class WtBindGroupLayout extends WtResource {

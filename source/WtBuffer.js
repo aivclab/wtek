@@ -7,17 +7,19 @@ export const wtBufferType = {
   StorageBuffer: 'storageBuffer'
 }
 
+// Must be defined as const enums to support implementations with undefined
+// GPUBufferUsage
 export const wtBufferUsage = {
-  MapRead: GPUBufferUsage.MAP_READ,
-  MapWrite: GPUBufferUsage.MAP_WRITE,
-  CopySrc: GPUBufferUsage.COPY_SRC,
-  CopyDst: GPUBufferUsage.COPY_DST,
-  Index: GPUBufferUsage.INDEX,
-  Vertex: GPUBufferUsage.VERTEX,
-  Uniform: GPUBufferUsage.UNIFORM,
-  Storage: GPUBufferUsage.STORAGE,
-  Indirect: GPUBufferUsage.INDIRECT,
-  QueryResult: GPUBufferUsage.QUERY_RESOLVE,
+  MapRead: 0x1, // GPUBufferUsage.MAP_READ,
+  MapWrite: 0x2, // GPUBufferUsage.MAP_WRITE,
+  CopySrc: 0x4, // GPUBufferUsage.COPY_SRC,
+  CopyDst: 0x8, // GPUBufferUsage.COPY_DST,
+  Index: 0x10, // GPUBufferUsage.INDEX,
+  Vertex: 0x20, // GPUBufferUsage.VERTEX,
+  Uniform: 0x40, // GPUBufferUsage.UNIFORM,
+  Storage: 0x80, // GPUBufferUsage.STORAGE,
+  Indirect: 0x100, // GPUBufferUsage.INDIRECT,
+  QueryResult: 0x200, // GPUBufferUsage.QUERY_RESOLVE,
   Unknown: 0x00000
 }
 
@@ -29,6 +31,12 @@ export class WtBuffer extends WtResource {
     this.buffer_ = null
     this.stagingBuffer_ = null
     this.sizeInBytes_ = 0
+  }
+
+  destroy () {
+    if (this.buffer_) {
+      this.buffer_.destroy()
+    }
   }
 
   createVertexBuffer (sizeInBytes) {
@@ -47,6 +55,22 @@ export class WtBuffer extends WtResource {
 
   createVertexBufferFromData (data) {
     this.usage_ = wtBufferUsage.Vertex
+    const bufferDescriptor = {
+      size: data.byteLength,
+      usage: this.usage_,
+      mappedAtCreation: true
+    }
+    this.buffer_ = super.getDevice().createBuffer(bufferDescriptor)
+    const mapped = new Uint8Array(this.buffer_.getMappedRange())
+    mapped.set(new Uint8Array(data.buffer, data.byteOffset, data.byteLength))
+    this.buffer_.unmap()
+  }
+
+  /*
+   * @param {ArrayBuffer} data
+   */
+  createStagingBufferFromData (data) {
+    this.usage_ = GPUBufferUsage.COPY_SRC
     const bufferDescriptor = {
       size: data.byteLength,
       usage: this.usage_,
@@ -84,7 +108,7 @@ export class WtBuffer extends WtResource {
   }
 
   createStorageBuffer (sizeInBytes) {
-    this.usage_ = wtBufferUsage.Storage | GPUBufferUsage.COPY_SRC
+    this.usage_ = wtBufferUsage.Storage | GPUBufferUsage.COPY_SRC | GPUBufferUsage.COPY_DST
     this.sizeInBytes_ = sizeInBytes
     const bufferDescriptor = {
       size: this.sizeInBytes_,

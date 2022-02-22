@@ -8,9 +8,11 @@ export class WtComputePipeline extends WtResource {
   }
 
   create (computeShaderModule) {
+    /*
     this.pipeLineLayout_ = super
       .getDevice()
       .createPipelineLayout({ bindGroupLayouts: [this.bindGroupLayouts_] })
+      */
 
     this.computeStage_ = {
       layout: this.pipeLineLayout_,
