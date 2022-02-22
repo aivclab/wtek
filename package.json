@@ -4,7 +4,7 @@
     "gl-matrix": "^3.3.0"
   },
   "peerDependencies": {
-    "wfundament": "git+ssh://git@bitbucket.alexandra.dk:7999/rkin/wfundament.git"
+    "wfundament": "*"
   },
   "description": "WebGPU engine",
   "devDependencies": {
